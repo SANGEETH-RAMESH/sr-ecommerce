@@ -1,0 +1,103 @@
+<%-include('../layouts/header.ejs')%>
+        <!-- mini cart start -->
+
+        <div class="breadcrumb-content text-center"
+            style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="margin-left: 40px; margin-top: 20px;">Order Placed </h3>
+            <ul style="display: flex; margin-right: 40px;">
+                <li><a href="/">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li>Order </li>
+            </ul>
+        </div>
+
+
+
+        <body>
+        
+         <!--start page wrapper -->
+		<div class="page-wrapper">
+			<div class="page-content">
+				<!--start breadcrumb-->
+				
+				<!--end breadcrumb-->
+				<!--start shop cart-->
+				<section class="py-4">
+					<div class="container">
+						<div class="card py-3 mt-sm-3">
+							<div class="card-body text-center">
+								<h2 class="h4 pb-3">Thank you for your order!</h2>
+								<p class="fs-sm mb-2">Your order has been placed and will be processed as soon as possible.</p>
+								<p class="fs-sm mb-2">Make sure you make note of your order number, which is <span class="fw-medium"><%=Order.orderId%>.</span>
+								</p>
+								<p class="fs-sm">You will be receiving an email shortly with confirmation of your order. <u>You can now:</u>
+								</p><a class="btn btn-light rounded-0 mt-3 me-3" href="/home">Go back shopping</a><a class="btn btn-white rounded-0 mt-3" href="/order"><i class='bx bx-map'></i>Track order</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!--end shop cart-->
+			</div>
+		</div>
+		<!--end page wrapper -->
+        </body>
+        
+        <%-include('../layouts/footer.ejs')%>
+        <!-- Mobile Menu start -->
+       
+    </div>
+    <!-- All JS is here -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "error",
+                                    title: "Sorry, your payment was not successful. Your order has been placed successfully!",
+                                    width:'800'
+                                });
+            
+        });
+    </script>
+    <script src="/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/assets/js/vendor/popper.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins/wow.js"></script>
+    <script src="/assets/js/plugins/scrollup.js"></script>
+    <script src="/assets/js/plugins/aos.js"></script>
+    <script src="/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/assets/js/plugins/swiper.min.js"></script>
+    <script src="/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/plugins/waypoints.min.js"></script>
+    <script src="/assets/js/plugins/jquery.counterup.js"></script>
+    <script src="/assets/js/plugins/select2.min.js"></script>
+    <script src="/assets/js/plugins/easyzoom.js"></script>
+    <script src="/assets/js/plugins/slinky.min.js"></script>
+    <script src="/assets/js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="/assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/urdan/urdan/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jan 2024 09:30:35 GMT -->
+
+</html>

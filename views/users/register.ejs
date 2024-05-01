@@ -1,0 +1,275 @@
+<%-include('../layouts/header.ejs')%>
+    <!-- mini cart start -->
+
+    <div class="breadcrumb-content text-center"
+        style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin-left: 100px; margin-top: 20px;">Register </h3>
+        <ul style="display: flex; margin-right: 40px;">
+            <li><a href="/home">Home</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li>Register </li>
+        </ul>
+    </div>
+    <div class="login-register-area pb-100 pt-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 offset-lg-2">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-bs-toggle="tab" href="#lg1">
+                                <h4> Register </h4>
+                            </a>
+
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form id="registrationForm" action="/register" method="post"
+                                            onsubmit="return validateForm()">
+                                            <% if(typeof message !=='undefined' ) { %>
+                                                <h4 style="color: red;">
+                                                    <%= message %>
+                                                </h4>
+                                                <% } %>
+                                                    <span id="rnameError" style="color: red;"></span>
+                                                    <input type="text" id="rname" name="name" placeholder="Username">
+
+                                                    <span id="rpasswordError" style="color: red;"></span>
+                                                    <input type="password" id="rpassword" value="#Changucr7"
+                                                        name="password" placeholder="Password">
+                                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+                                                    <span id="rconfirmPasswordError" style="color: red;"></span>
+                                                    <input type="password" value="#Changucr7" id="rconfirmPassword"
+                                                        placeholder="Confirm Password">
+                                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+                                                    <span id="remailError" style="color: red;"></span>
+                                                    <input type="text" id="remail" name="email" placeholder="Email">
+
+                                                    <span id="rmobileError" style="color: red;"></span>
+                                                    <input type="text" id="rmobile" name="mobile"
+                                                        placeholder="Mobile Number">
+
+                                                    <div class="button-box btn-hover">
+                                                        <button type="submit">Register</button>
+                                                    </div>
+
+
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-include('../layouts/footer.ejs')%>
+        <!-- Mobile Menu start -->
+
+        </div>
+        <!-- All JS is here -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+        <script src="assets/js/vendor/popper.min.js"></script>
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
+        <script src="assets/js/plugins/wow.js"></script>
+        <script src="assets/js/plugins/scrollup.js"></script>
+        <script src="assets/js/plugins/aos.js"></script>
+        <script src="assets/js/plugins/magnific-popup.js"></script>
+        <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+        <script src="assets/js/plugins/swiper.min.js"></script>
+        <script src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
+        <script src="assets/js/plugins/jquery-ui.js"></script>
+        <script src="assets/js/plugins/jquery-ui-touch-punch.js"></script>
+        <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+        <script src="assets/js/plugins/waypoints.min.js"></script>
+        <script src="assets/js/plugins/jquery.counterup.js"></script>
+        <script src="assets/js/plugins/select2.min.js"></script>
+        <script src="assets/js/plugins/easyzoom.js"></script>
+        <script src="assets/js/plugins/slinky.min.js"></script>
+        <script src="assets/js/plugins/ajax-mail.js"></script>
+        <!-- Main JS -->
+        <script src="assets/js/main.js"></script>
+
+        <script>
+            function validateForm() {
+                var name = document.getElementById("rname").value;
+                var password = document.getElementById("rpassword").value;
+                var confirmPassword = document.getElementById("rconfirmPassword").value;
+                var email = document.getElementById("remail").value;
+                var mobile = document.getElementById("rmobile").value;
+
+                var nameError = document.getElementById("rnameError");
+                var passwordError = document.getElementById("rpasswordError");
+                var confirmPasswordError = document.getElementById("rconfirmPasswordError");
+                var emailError = document.getElementById("remailError");
+                var mobileError = document.getElementById("rmobileError");
+
+                nameError.textContent = "";
+                passwordError.textContent = "";
+                confirmPasswordError.textContent = "";
+                emailError.textContent = "";
+                mobileError.textContent = "";
+
+                var isValid = true;
+
+                if (name.trim() === "") {
+                    nameError.textContent = "Please enter your username";
+                    isValid = false;
+                } else if (!isValidName(name)) {
+                    nameError.textContent = "Name should only contain text characters";
+                    isValid = false;
+                }
+
+                if (password.trim() === "") {
+                    passwordError.textContent = "Please enter your password";
+                    isValid = false;
+                } else if (!isValidPassword(password)) {
+                    passwordError.textContent = "Password must contain at least one lowercase letter, one uppercase letter, and one number";
+                    isValid = false;
+                }
+
+                if (confirmPassword.trim() === "") {
+                    confirmPasswordError.textContent = "Please confirm your password";
+                    isValid = false;
+                } else if (password !== confirmPassword) {
+                    confirmPasswordError.textContent = "Passwords do not match";
+                    isValid = false;
+                }
+
+                if (email.trim() === "") {
+                    emailError.textContent = "Please enter your email";
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    emailError.textContent = "Please enter a valid email address";
+                    isValid = false;
+                }
+
+                if (mobile.trim() === "") {
+                    mobileError.textContent = "Please enter your mobile number";
+                    isValid = false;
+                } else if (!isValidMobile(mobile)) {
+                    var zeroCount = (mobile.match(/0/g) || []).length;
+                    if (zeroCount > 5) {
+                        mobileError.textContent = "Mobile number cannot contain more than 5 zeros";
+                    } else if (parseInt(mobile.charAt(0)) <= 5) { // Check if the first digit is less than or equal to 5
+                        mobileError.textContent = "Mobile number's first digit must be greater than 5";
+                    } else {
+                        mobileError.textContent = "Mobile number must contain 10 digits and cannot be blank";
+                    }
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function isValidName(name) {
+                var nameRegex = /^[a-zA-Z\s]+$/;
+                return nameRegex.test(name);
+            }
+
+            function isValidPassword(password) {
+                var lowercaseRegex = /[a-z]/;
+                var uppercaseRegex = /[A-Z]/;
+                var numberRegex = /[0-9]/;
+                return lowercaseRegex.test(password) && uppercaseRegex.test(password) && numberRegex.test(password);
+            }
+
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.{0,1}[^\s@]+\.(?:com)?$/;
+                return emailRegex.test(email);
+            }
+
+            function isValidMobile(mobile) {
+                var mobileRegex = /^\d{10}$/;
+                var firstDigit = parseInt(mobile.charAt(0)); // Extract the first digit and convert it to an integer
+                var zeroCount = (mobile.match(/0/g) || []).length;
+
+                return mobileRegex.test(mobile) && firstDigit > 5 && zeroCount <= 5;
+            }
+        </script>
+        <script>
+            document.getElementById("registrationForm").addEventListener("submit", function (event) {
+                // Prevent the form from submitting automatically
+                event.preventDefault();
+
+                // Validate the form before submitting
+                if (validateForm()) {
+                    // If all validations pass, proceed with the fetch request
+                    var name = document.getElementById("rname").value;
+                    var password = document.getElementById("rpassword").value;
+                    var confirmPassword = document.getElementById("rconfirmPassword").value;
+                    var email = document.getElementById("remail").value;
+                    var mobile = document.getElementById("rmobile").value;
+
+                    const formData = {
+                        name: name,
+                        password: password,
+                        confirmPassword: confirmPassword,
+                        email: email,
+                        mobile: mobile
+                    }
+                    console.log(formData)
+                    // Append form data here
+                    fetch("/register", {
+                        method: "POST",
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Handle the response from the server
+                            if (data.message === 'Email is Already Registered') {
+                                document.getElementById('remailError').textContent = data.message;
+                            } else if (data.message === 'Otp Sented to Email') {
+                                // Show a toast alert or notification
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "OTP has been sent to your email successfully"
+                                });
+                                setTimeout(() => {
+                                    window.location.href = "/otp";
+                                }, 1500);
+                            } else {
+                                // Handle other responses if needed
+                            }
+                        })
+                        .catch(error => {
+                            // Handle any errors that occur during the fetch
+                        });
+                }
+            });
+        </script>
+
+
+
+
+        </body>
+
+
+
+        </html>

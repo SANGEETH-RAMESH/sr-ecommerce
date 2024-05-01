@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+
+
+
+</head>
+
+
+<body>
+    <style>
+        .align-center {
+            text-align: center;
+        }
+    </style>
+
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index" class="brand-wrap">
+                <!-- <img src="/adminassets/imgs/theme/sr.sv" class="logo" alt="Nest Dashboard" /> -->
+                <span style="font-family: Island Moments, cursive;font-size: 50px;
+                font-style: normal; text-align: center;">SR</span>
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"><i
+                        class="text-muted material-icons md-menu_open"></i></button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/index">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/userdetails">
+                        <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category">
+                        <i class="icon fa fa-list-alt" aria-hidden="true"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/product">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/loadadminorder">
+                        <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/loadcoupon">
+                        <i class="icon fas fa-gift"></i>
+                        <span class="text">Coupon</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/salesreport">
+                        <i class="icon fas fa-chart-bar"></i>
+                        <span class="text">Sales </span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link " href="/admin/offer">
+                        <i class="icon fas fa-tags"></i>
+                        <span class="text">Offer </span>
+                    </a>
+                </li>
+
+
+            </ul>
+            <hr />
+
+            <br />
+            <br />
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage"
+                            aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="/adminassets/imgs/theme/flag-us.png"
+                                    alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-fr.png"
+                                    alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-jp.png"
+                                    alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-cn.png"
+                                    alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/adminassets/imgs/people/avatar-2.png" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
+                                center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="card mb-4">
+                <header class="card-header" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h2 class="content-title card-title">Category Offer</h2>
+                    </div>
+                    <form id="AddProduct" action="/loadaddcategoryoffer">
+                        <button type="submit" class="btn btn-sm font-sm rounded btn-brand"
+                            style="font-size: 1.1rem; padding: 0.5rem 1rem;">Add Offer</button>
+                    </form>
+                </header>
+                <!-- card-header end// -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="align-center" style="width: 20%;">Category</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Offer</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Offer Start</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Offer End</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% categoryOffer.forEach(coffer=> { %>
+                                    <tr>
+                                        <td style="font-size: 16px; text-align: center; color: black;"><b>
+                                                <%= coffer.category.categoryname %>
+                                            </b></td>
+                                        <td style="font-size: 16px; text-align: center; color: black;"><strong>
+                                                <%= coffer.offer %> %
+                                            </strong></td>
+                                        <td style="font-size: 16px; text-align: center; color: black;"><strong>
+                                                <%= coffer.createdAt.toLocaleDateString() %>
+                                            </strong></td>
+                                        <td style="font-size: 16px; text-align: center; color: black;"><strong>
+                                                <%= coffer.expires.toLocaleDateString() %>
+                                            </strong></td>
+                                        <td style="text-align: center;">
+                                            <button type="button" coffer_id="<%= coffer._id %>"
+                                                class="blockToggle Delete btn btn-danger" data-state="blocked"
+                                                style="padding: 5px 10px; font-size: 14px;">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- table-responsive //end -->
+                </div>
+                <!-- card-body end// -->
+            </div>
+
+            <div class="card mb-4">
+                <header class="card-header" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h2 class="content-title card-title">Product Offer</h2>
+                    </div>
+                    <form id="AddProduct" action="/loadaddproductOffer">
+                        <button type="submit" class="btn btn-sm font-sm rounded btn-brand"
+                            style="font-size: 1.1rem; padding: 0.5rem 1rem;">Add Offer</button>
+                    </form>
+                </header>
+                <!-- card-header end// -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="align-center" style="width: 20%;">Product</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Offer</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Offer Start</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Offer End</th>
+                                    <th scope="col" class="align-center" style="width: 20%;">Active</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%productOffer.forEach(poffer=>{%>
+                                    <tr>
+
+                                        <td style="font-size: 16px; text-align: center; color: black;">
+                                            <%=poffer.product.productname%>
+                                        </td>
+                                        <td style="font-size: 16px; text-align: center; color: black;">
+                                            <%=poffer.offer%> %
+                                        </td>
+                                        <td style="font-size: 16px; text-align: center; color: black;">
+                                            <%=poffer.createdAt.toLocaleDateString()%>
+                                        </td>
+                                        <td style="font-size: 16px; text-align: center; color: black;">
+                                            <%=poffer.expires.toLocaleDateString()%>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <button type="button" poffer_id="<%= poffer._id %>"
+                                                class="blockToggle pofferdelete Delete btn btn-danger" data-state="blocked"
+                                                style="padding: 5px 10px; font-size: 14px;">Delete</button>
+                                        </td>
+
+
+                                        <!-- dropdown //end -->
+                                        </td>
+                                    </tr>
+                                    <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- table-responsive //end -->
+                </div>
+                <!-- card-body end// -->
+            </div>
+
+
+    </main>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        document.querySelectorAll('.Delete').forEach(button => {
+            button.addEventListener('click', function () {
+                const cofferId = this.getAttribute('coffer_id');
+
+                // Show SweetAlert confirmation dialog
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this category!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            // User confirmed, proceed with deletion
+                            fetch('/deletecategoryoffer', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ cofferId: cofferId })
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        // Handle successful response
+                                        console.log('Category deleted successfully');
+                                        return response.json();
+                                    } else {
+                                        // Handle error response
+                                        console.error('Failed to delete category');
+                                        throw new Error('Failed to delete category');
+                                    }
+                                })
+                                .then(data => {
+                                    if (data.message === "Category Offer Deleted") {
+                                        // Display SweetAlert success message
+                                        swal("Success!", "Category Offer Deleted", "success")
+                                            .then(() => {
+                                                console.log("Category Offer Deleted");
+                                                // Reload the page
+                                                window.location.reload();
+                                            });
+                                    }
+                                })
+                                .catch(error => {
+                                    // Handle network error
+                                    console.error('Error:', error);
+                                });
+                        } else {
+                            // User canceled the deletion
+                            Swal.fire("Category offer deletion canceled!", {
+                                icon: "info",
+                            });
+                        }
+                    });
+            });
+        });
+    </script>
+    <script>
+        // Add event listener to all buttons with class 'pofferdelete'
+        document.querySelectorAll('.pofferdelete').forEach(button => {
+            button.addEventListener('click', function() {
+                // Retrieve the poffer_id attribute value
+                const pofferId = this.getAttribute('poffer_id');
+                
+                
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this Product Offer!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            // User confirmed, proceed with deletion
+                            fetch('/deleteproductoffer', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ pofferId: pofferId })
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        // Handle successful response
+                                        console.log('Product deleted successfully');
+                                        return response.json();
+                                    } else {
+                                        // Handle error response
+                                        console.error('Failed to delete category');
+                                        throw new Error('Failed to delete category');
+                                    }
+                                })
+                                .then(data => {
+                                    if (data.message === "Product Offer Deleted") {
+                                        // Display SweetAlert success message
+                                        swal("Success!", "Product Offer Deleted", "success")
+                                            .then(() => {
+                                                console.log("Product Offer Deleted");
+                                                // Reload the page
+                                                window.location.reload();
+                                            });
+                                    }
+                                })
+                                .catch(error => {
+                                    // Handle network error
+                                    console.error('Error:', error);
+                                });
+                        } else {
+                            // User canceled the deletion
+                            Swal.fire("Product offer deletion canceled!", {
+                                icon: "info",
+                            });
+                        }
+                    });
+            });
+        });
+    </script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/adminassets/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+    <script src="/adminassets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+
+</html>

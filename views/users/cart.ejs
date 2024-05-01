@@ -1,0 +1,387 @@
+<%-include('../layouts/header.ejs')%>
+        <!-- mini cart start -->
+
+        <div class="breadcrumb-content text-center"
+            style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="margin-left: 100px; margin-top: 20px;">Cart </h3>
+            <ul style="display: flex; margin-right: 40px;">
+                <li><a href="/">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li>Cart </li>
+            </ul>
+        </div>
+        <div class="cart-area pt-100 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form action="#">
+                            <div class="cart-table-content">
+                                <div class="table-content table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="width-thumbnail"></th>
+                                                <th class="width-name">Product</th>
+                                                <th class="width-price"> Price</th>
+                                                <th class="width-quantity">Quantity</th>
+                                                <th class="width-subtotal">Subtotal</th>
+                                                <th class="width-remove"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <% if ( Products == null || Products.product.length==0) { %>
+                                                <!-- Display a message when the wishlist is empty -->
+                                                <tr>
+                                                    <td colspan="6" style="text-align: center;">No products in cart</td>
+                                                </tr>
+                                            <% } else { %>
+
+                                            <% if (Products) { %>
+                                                <%
+                                                    var totalPrice = 0;
+                                                    var discountedPrice;
+                                                    console.log(Products.product.length)
+                                                  
+                                                    Products.product.reverse().forEach((product, index) => {
+                                                       
+                                                        if(!product.productId.categoryId.is_delete){
+
+                                                        
+                                                        if (!product.productId.is_delete) {
+                                                            
+                                                            if (product.productId.offer) {
+                                                                
+                                                                 if (product?.productId?.categoryId.Offer > product?.productId.offer) { 
+                                                                  
+                                                                    
+                                                                    var  discountedPrice=product.productId.price-((product?.productId?.categoryId.Offer.offer*product.productId.price)/100)
+                                                                    
+                                                                 } else {
+                                                                   
+                                                                    var      discountedPrice = product.productId.price - (product.productId.price * product.productId.offer.offer / 100);
+                                                                 } 
+                                                                 product.productId.price = discountedPrice;
+                                                                 
+                                                            } else {
+                                                             
+                                                                
+                                                                if ( product.productId.categoryId.Offer) {
+                                                                    
+                                                                    
+                                                                    
+                                                                    const discountedPrice = product.productId.price - (product.productId.price * product.productId.categoryId.Offer.offer / 100);
+                                                                    
+                                                                    product.productId.price = discountedPrice;
+                                                                }
+                                                            }
+                                                        }
+                                                            
+                                                            const productTotal = product.productId.price * product.Quantity;
+                                                            totalPrice += productTotal;
+                                                %>
+                                            
+                                                <tr>
+                                                    <td class="product-thumbnail">
+                                                        <a href="/singleproduct/<%= product.productId._id %>"><img src="/uploads/product/<%= product.productId.image[0] %>" alt=""></a>
+                                                    </td>
+                                                    <td class="product-name">
+                                                        <h5><a href="/singleproduct/<%= product.productId._id %>"><%= product.productId.productname %></a></h5>
+                                                    </td>
+                                                    <td class="product-cart-price">
+                                                        <span id="Price<%= index + 1 %>" value="<%= product.productId.price %>" class="amount">$<%= product.productId.price %></span>
+                                                    </td>
+                                                    <input type="hidden" name="<%= product.productId.price %>">
+                                                    <td class="cart-quality">
+                                                        <div class="custom-quantity">
+                                                            <input type="number" class="cart-plus-minus-box qty text" id="<%= product.productId._id %>" name="qtybutton" value="<%= product.Quantity %>" min="1" max="<%= product.productId.quantity+1 %>" onclick="updateQuantity('<%= product.productId._id %>','<%= product.productId.price %>', '<%= product.productId.quantity %>', `<%= index + 1 %>`)" style="border: 1px rounded #ccc; padding: 5px; width: 50px; text-align: center;">
+                                                        </div>
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span id="totalprice<%= index + 1 %>">$<%= product.productId.price * product.Quantity %></span>
+                                                    </td>
+                                                    <td class="product-remove"><a href="#" onclick="deletecart('<%=product.productId._id%>')" id="<%= product.productId._id %>" class="delete-link"><i class="ti-trash"></i></a></td>
+                                                </tr>
+                                            
+                                                <% }
+                                                    });
+                                                %>
+                                            <% }  %>
+                                            <%}%>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="cart-shiping-update-wrapper">
+                                        <div class="cart-shiping-update btn-hover">
+                                            <a href="/">Continue Shopping</a>
+                                        </div>
+                                        <div class="cart-clear-wrap">
+                                            <div id="deletecart" class="cart-clear btn-hover">
+                                                <% if (Products != null) { %>
+                                                    <% let foundNonDeletedProduct = false; %>
+                                                    <% Products.product.forEach(items => { %>
+                                                        <% if (!foundNonDeletedProduct && !items.productId.is_delete) { %>
+                                                            <% foundNonDeletedProduct = true; %>
+                                                            <a onclick="deleteFullcart('<%= Products._id %>')" id="<%= Products._id %>" href="#">Clear Cart</a>
+                                                        <% } %>
+                                                    <% }); %>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Left column -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        
+                    </div>
+
+                    <!-- Right column -->
+                    <div class="col-lg-4 col-md-6 col-12 offset-lg-4 offset-md-0">
+                       
+                        <% if (Products !== null && Products.product.length > 0) { %>
+                            <% let foundNonDeletedProduct = false; %>
+                            <% Products.product.forEach(items => { %>
+                                
+                                
+                                <% if (!foundNonDeletedProduct && !items.productId.is_delete&&!items.productId.categoryId.is_delete) { %>
+                                    <% foundNonDeletedProduct = true; %>
+                                    <div class="grand-total-wrap">
+                                        <div class="grand-total-content">
+                                            <div class="grand-total">
+                                                <h4>Total <span>$<%= totalPrice.toFixed(2) %></span></h4>
+                                            </div>
+                                        </div>
+                                        <div class="grand-total-btn btn-hover">
+                                            <a class="btn theme-color" href="/checkout">Proceed to checkout</a>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%-include('../layouts/footer.ejs')%>
+        <!-- Mobile Menu start -->
+        
+    <!-- All JS is here -->
+    <script>
+     function updateQuantity(id, price, maxQuantity, index) {
+    console.log('hello');
+    const ProductId = id;
+    const inputElement = document.getElementById(ProductId);
+    if (inputElement) {
+        var newQuantity = inputElement.value;
+    }
+
+    if (newQuantity > maxQuantity) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Maximum Quantity Reached',
+            text: 'You have reached the maximum quantity for this product.',
+            showConfirmButton: false,
+            timer: 1000
+        });
+        inputElement.value = maxQuantity; // Set input value to maximum allowed quantity
+        return; // Exit the function if maximum quantity reached
+    }
+
+    const data = {
+        ProductId: ProductId,
+        quantity: newQuantity
+    };
+
+    fetch('/updatequantity', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then(data => {
+            const totalPriceElement = document.getElementById('totalprice' + index);
+            console.log(totalPriceElement,'hello')
+            const newTotalPrice = data.quantity * price;
+            console.log(newTotalPrice,'hi')
+            totalPriceElement.textContent = `$` + newTotalPrice.toFixed(2)
+
+            // Recalculate the grand total
+            const totalPrice = Array.from(document.querySelectorAll('.product-total'))
+                .reduce((total, element) => {
+                    const priceString = element.querySelector('span').textContent;
+                    const priceValue = parseFloat(priceString.substring(1)); // Remove '$' and convert to float
+                    return total + priceValue;
+                }, 0);
+
+            const grandTotalElement = document.querySelector('.grand-total h4 span');
+            grandTotalElement.textContent = `$${totalPrice.toFixed(2)}`;
+        })
+        .catch(error => {
+            console.error('There was a problem updating the quantity', error.message);
+        });
+}
+    </script>
+    <script>
+        function deletecart(Id) {
+            const productid = Id;
+
+            // Show confirmation message using SweetAlert
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this product!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        const data = {
+                            ProductId: productid
+                        };
+
+                        fetch('/deletecart', {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                // Show success message after successful deletion
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Product Deleted"
+                            })
+                                .then(() => {
+                                    // Reload the page
+                                    window.location.reload();
+                                });
+                            })
+                            .catch(error => {
+                                console.log('There was a problem with the fetch operation', error);
+                            });
+                    } else {
+                        // If cancel button is clicked, do nothing
+                        return;
+                    }
+                });
+        }
+    </script>
+    <script>
+        function deleteFullcart(Id) {
+            const productid = Id;
+            const data = {
+                ProductId: productid
+            };
+    
+            // Show confirmation message using SweetAlert
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This action will empty your cart. Are you sure you want to proceed?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, empty cart!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/deleteFullCart', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                // Show success message after successful deletion
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Cart Empty"
+                            })
+                                .then(() => {
+                                    // Reload the page
+                                    window.location.reload();
+                                });
+                            })
+                    
+                    .catch(error => {
+                        console.log('There was a problem with the fetch operation', error);
+                    });
+                }
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/assets/js/vendor/popper.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins/wow.js"></script>
+    <script src="/assets/js/plugins/scrollup.js"></script>
+    <script src="/assets/js/plugins/aos.js"></script>
+    <script src="/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/assets/js/plugins/swiper.min.js"></script>
+    <script src="/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/plugins/waypoints.min.js"></script>
+    <script src="/assets/js/plugins/jquery.counterup.js"></script>
+    <script src="/assets/js/plugins/select2.min.js"></script>
+    <script src="/assets/js/plugins/easyzoom.js"></script>
+    <script src="/assets/js/plugins/slinky.min.js"></script>
+    <script src="/assets/js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="/assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/urdan/urdan/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jan 2024 09:30:35 GMT -->
+
+</html>

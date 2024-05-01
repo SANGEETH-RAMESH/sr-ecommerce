@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px;
+            border-bottom: 1px solid white;
+        }
+
+        .header-item {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index" class="brand-wrap">
+                <span style="font-family: Island Moments, cursive;font-size: 50px;
+                font-style: normal; text-align: center;">SR</span>
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"><i
+                        class="text-muted material-icons md-menu_open"></i></button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/index">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/userdetails">
+                      <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category">
+                        <i class="icon fa fa-list-alt" aria-hidden="true"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/product">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+                <li class="menu-item  active">
+                    <a class="menu-link" href="/loadadminorder">
+                        <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/loadcoupon">
+                        <i class="icon fas fa-gift"></i>
+                        <span class="text">Coupon</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/salesreport">
+                        <i class="icon fas fa-chart-bar"></i>
+                        <span class="text">Sales </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer">
+                        <i class="icon fas fa-tags"></i>
+                        <span class="text">Offer </span>
+                    </a>
+                </li>
+
+            </ul>
+            <hr />
+
+            <br />
+            <br />
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term" />
+                        <button class="btn btn-light bg" type="button"><i class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products"></option>
+                        <option value="New orders"></option>
+                        <option value="Apple iphone"></option>
+                        <option value="Ahmed Hassan"></option>
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"><i
+                        class="material-icons md-apps"></i></button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage"
+                            aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="/adminassets/imgs/theme/flag-us.png"
+                                    alt="English" />English</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-fr.png"
+                                    alt="Français" />Français</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-jp.png"
+                                    alt="Français" />日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-cn.png"
+                                    alt="Français" />中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/adminassets/imgs/people/avatar-2.png" alt="User" /></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
+                                center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Order Details</h2>
+                </div>
+                <div>
+                    <input type="text" placeholder="Search order ID" class="form-control bg-white" />
+                </div>
+            </div>
+            <div class="card mb-4">
+                <!-- <header class="card-header">
+                    <div class="row gx-3">
+                        Search and filter options go here
+                    </div>
+                </header> -->
+                <!-- card-header end// -->
+                <div class="card-body">
+                    <!-- User Details -->
+                    <div class="user-details">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4>User Details</h4>
+                            <h4>Address</h4>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <!-- Left Side: User Name and Mobile Number -->
+                            <div class="left-details">
+                                
+                                <p>User Name : <span class="fw-bolder p-2"> <%= User[0].name %></span></p>
+                                <p>Email : <span class="fw-bolder p-2"> <%= User[0].email %></span></p>
+                                <p>Mobile Number : <span class="fw-bolder p-2"> <%= User[0].mobile %></span></p>
+                                <p>Payment Status : <span class="fw-bolder p-2"> <%= order[0].paymentStatus %></span></p>
+                                <p>Payment Method : <span class="fw-bolder p-2"> <%= order[0].paymentMethod %></span></p>
+
+                            </div>
+                
+                            <!-- Right Side: Address -->
+                            <div class="right-details">
+                                
+                                <% address.forEach(addressss=>{%>
+                                    
+                                <p>Address Name:<span class="fw-bolder p-2"> <%= addressss.address[0].name %></span></p>
+                                <p>City:<span class="fw-bolder p-2"> <%= addressss.address[0].city %></span></p>
+                                <p>State: <span class="fw-bolder p-2"><%= addressss.address[0].state %></span></p>
+                                <p>Pincode: <span class="fw-bolder p-2"><%= addressss.address[0].Zipcode %></span></p>
+                                <%})%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- card-body end// -->
+            </div>
+        
+            <!-- Product Details -->
+            <div class="card mb-4">
+                <header class="card-header">
+                    <h3>Product Details</h3>
+                </header>
+            
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                              
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <% order.forEach((product, index) => { %>
+                            <tr>
+                                <td>
+                                    <img src="/uploads/product/<%= product.items.product.image[0] %>" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+                                </td>
+                                <td><%= product.items.product.productname %></td>
+                                <td>$ <%= product.items.price %></td>
+                                <td><%= product.items.quantity %></td>
+                                <td><%= product.items.Status %></td>
+                                <td style="margin-left: 500px;">
+                                    <form id="statusChangeForm<%= index %>" action="#" method="POST" class="d-flex align-items-center">
+                                        <% if (product.items.Status !== 'Delivered' && product.items.Status !== 'Return') { %>
+                                            <div class="me-2" productid="<%= product.items.productId %>" orderid="<%= product._id %>" userid="<%= product.userId %>">
+                                                <select class="form-select" id="orderStatus<%= index %>" name="orderStatus">
+                                                    <option value="Pending" <%= product.items.Status === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                                    <option value="Shipped" <%= product.items.Status === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                                    <%=console.log(product.paymentStatus,product.paymentMethod)%>
+                                                    <% if ((product.items.Status !== 'Delivered'&&product.paymentMethod!='paypal')||( product.paymentStatus=='Success'&&product.paymentMethod=='paypal')) { %>
+                                                        <option value="Delivered" <%= product.items.Status === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                                                    <% } %>
+                                                    <option value="Cancelled" <%= product.items.Status === 'Cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                                </select>
+                                            </div>
+                                            <% if (product.items.Status === 'Returned') { %>
+                                                <p class="text-success">Returned</p>
+                                            <% } else if (product.items.Status !== 'Cancelled' && product.items.Status !== 'Delivered') { %>
+                                                <button type="button" id="submitButton<%= index %>" class="btn btn-dark btn-sm submitButtonClass" onclick="submitForm(`<%= index %>`)">Submit</button>
+                                            <% }  %>
+                                               
+                                        <% } else if (product.items.approve == 3) { %>
+                                            <p style="color: green;">Approved</p>
+                                        <% } else if (product.items.approve == 2) { %>
+                                            <p style="color: red;">Declined</p>
+                                        <% } else { %>
+                                            <div>
+                                                <% if (product.items.approve == 1) { %>
+                                                    <div style="margin-bottom: 10px;"> <!-- Added margin-bottom for spacing -->
+                                                        <a href="#" productid="<%= product.items.productId %>" orderId="<%= product._id %>" userid="<%= product.userId %>" class="btn btn-danger btn-sm approveButton">Approve</a>
+                                                    </div>
+                                                    <div>
+                                                        <a href="#" productid="<%= product.items.productId %>" orderId="<%= product._id %>" userid="<%= product.userId %>" class="btn btn-success btn-sm declineButton">Decline</a>
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                    </form>
+                                </td>
+                                <%if(product.items.Status=='Delivered' || product.items.Status=='Cancelled' || product.items.Status=='Return'){%>
+                                <td><%=product.items.reason%></td>
+
+                                <%}%>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                
+            </div>
+            
+        </section>
+
+    </main>
+    <script>
+        function submitForm(index) {
+            var productId = document.querySelector('#statusChangeForm' + index + ' .me-2').getAttribute('productid');
+            var orderId = document.querySelector('#statusChangeForm' + index + ' .me-2').getAttribute('orderid');
+            var userId = document.querySelector('#statusChangeForm' + index + ' .me-2').getAttribute('userid');
+            var orderStatus = document.getElementById('orderStatus' + index).value;
+    
+            // Construct the request body
+            var data = {
+                productId: productId,
+                orderId: orderId,
+                userId: userId,
+                orderStatus: orderStatus
+            };
+    
+            // Make the fetch request
+            fetch('/admin/order/update-order-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                // Handle the response as needed
+                location.reload();
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    <script>
+        // Function to handle the fetch request
+        function fetchData(url, body) {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log('response')
+                location.reload();
+            })
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+    
+        // Event delegation for the "Approve" button click
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('approveButton')) {
+                event.preventDefault();
+                const index = event.target.id.replace('approveButton', '');
+                const productid = event.target.getAttribute('productid');
+                const orderId = event.target.getAttribute('orderId');
+                const approveUrl = '/approve';
+                const body = { productid, orderId }; // Construct the request body
+                fetchData(approveUrl, body);
+            }
+        });
+    
+        // Event delegation for the "Decline" button click
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('declineButton')) {
+                event.preventDefault();
+                const index = event.target.id.replace('declineButton', '');
+                const productid = event.target.getAttribute('productid');
+                const orderId = event.target.getAttribute('orderId');
+                const declineUrl = '/decline';
+                const body = { productid, orderId }; // Construct the request body
+                fetchData(declineUrl, body);
+            }
+        });
+    </script>
+   
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index" class="brand-wrap">
+                <span style="font-family: Island Moments, cursive;font-size: 50px;
+                font-style: normal; text-align: center;">SR</span>
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/index">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/userdetails">
+                      <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/category">
+                        <i class="icon fa fa-list-alt" aria-hidden="true"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/product">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+  
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/loadadminorder">
+                        <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/loadcoupon">
+                        <i class="icon fas fa-gift"></i>
+                        <span class="text">Coupon</span>
+                    </a>
+                </li>
+                 <li class="menu-item">
+                    <a class="menu-link" href="/salesreport">
+                        <i class="icon fas fa-chart-bar"></i> 
+                        <span class="text">Sales </span>
+                    </a>
+                </li> 
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer">
+                        <i class="icon fas fa-tags"></i>
+                        <span class="text">Offer </span>
+                    </a>
+                </li>
+  
+            </ul>
+            <hr />
+  
+            <br />
+            <br />
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="/adminassets/imgs/theme/flag-us.png" alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="/adminassets/imgs/people/avatar-2.png" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+       
+           
+        <div class="row">
+            <div class="col-6">
+                <div class="content-header">
+                    <h2 class="content-title">Add New Category</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <form action="/addedCategory" method="post" enctype="multipart/form-data" class="content-main" id="categoryForm" onsubmit="return validateForm()">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <% if(typeof message !=='undefined' ) { %>
+                            <h4 style="color: red; font-family: Bangers, sans-serif;">
+                                <%= message %>
+                            </h4>
+                            <% } %>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6>Category Name</h6>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="mb-4">
+                                        <label class="form-label">category name</label>
+                                        <input type="text" id="categoryname" name="categoryname" placeholder="Type here" class="form-control">
+                                        <div id="categorynameError" style="color: red;"></div> <!-- Error message for category name -->
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-4 mt-0">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6>Image</h6>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="image">Images</label>
+                                        <input class="form-control" type="file" id="image" name="image">
+                                        <div id="imageError" style="color: red;"></div> <!-- Error message for image -->
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="submitBtn" class="btn btn-md rounded font-sm hover-up" style="size: 50px;">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+         <!-- content-main end// -->
+        
+    </main>
+    <script>
+        // Wait for the document to load before attaching event listeners
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     // Select the submit button by its id
+        //     var submitBtn = document.getElementById('submitBtn');
+        //     // Attach an event listener for the click event
+        //     submitBtn.addEventListener('click', function (event) {
+        //         // Prevent the default form submission behavior
+        //         event.preventDefault();
+        //         // Call the validateCategoryName function
+        //         if (!validateCategoryName()) {
+        //             // If validation fails, display an alert
+        //             alert('Category name should not be blank and should contain only text.');
+        //         } else {
+        //             // If validation passes, submit the form
+        //             // Get the form element
+        //             var form = document.querySelector('form');
+        //             // Submit the form
+        //             form.submit();
+        //         }
+        //     });
+        // });
+    
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+    <script>
+        function validateForm() {
+            var categoryName = document.getElementById("categoryname").value.trim();
+            var image = document.getElementById("image").value.trim();
+            var imageInput = document.getElementById("image");
+            
+            var categoryNameError = document.getElementById("categorynameError");
+            var imageError = document.getElementById("imageError");
+            
+            categoryNameError.textContent = "";
+            imageError.textContent = "";
+            
+            var isValid = true;
+            
+            // Validate category name
+            if (categoryName === "") {
+                categoryNameError.textContent = "Category name cannot be empty";
+                isValid = false;
+            }
+            
+            // Validate image
+            if (image === "") {
+                imageError.textContent = "Please select an image";
+                isValid = false;
+            } else {
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                if (!allowedExtensions.exec(imageInput.value)) {
+                    imageError.textContent = "Only images are allowed (jpg, jpeg, png, gif)";
+                    isValid = false;
+                    imageInput.value = ''; // Clear the file input field
+                }
+            }
+            
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>

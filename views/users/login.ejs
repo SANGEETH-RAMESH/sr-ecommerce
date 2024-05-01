@@ -1,0 +1,278 @@
+<%-include('../layouts/header.ejs')%>
+    <!-- mini cart start -->
+
+    <div class="breadcrumb-content text-center"
+        style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin-left: 100px; margin-top: 20px;">Login </h3>
+        <ul style="display: flex; margin-right: 40px;">
+            <li><a href="/">Home</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li>Login </li>
+        </ul>
+    </div>
+    <div class="login-register-area pb-100 pt-95">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 offset-lg-2">
+                    <div class="login-register-wrapper">
+                        <div class="login-register-tab-list nav">
+                            <a class="active" data-bs-toggle="tab" href="#lg1">
+                                <h4> login </h4>
+                            </a>
+
+                        </div>
+                        <div class="tab-content">
+                            <div id="lg1" class="tab-pane active">
+                                <div class="login-form-container">
+                                    <div class="login-register-form">
+                                        <form action="/login" method="post" onsubmit="return validateLoginForm()">
+                                            <% if(typeof message !=='undefined' ) { %>
+                                                <h4 style="color: red;">
+                                                    <%= message %>
+                                                </h4>
+                                                <% } %>
+                                                    <span id="emailError"
+                                                        style="color: red; display: none; margin-bottom: 100px;"></span>
+                                                    <input type="text" value="sangeethramesh05@gmail.com" id="email"
+                                                        name="email" placeholder="Email">
+                                                    <span id="passwordError" style="color: red; display: none;"></span>
+                                                    <!-- Password validation error message -->
+                                                    <br>
+                                                    <input type="password" value="#Changucr7" id="password"
+                                                        name="password" placeholder="Password">
+
+                                                    <br>
+                                                    <div class="login-toggle-btn">
+                                                        <input type="checkbox">
+                                                        <label>Remember me</label>
+                                                        <a href="/forgotpassword">Forgot Password?</a>
+                                                    </div>
+                                                    <div
+                                                        style="display: flex; justify-content: center; align-items: center;">
+                                                        <div class="button-box btn-hover" style="margin-right: 10px;">
+                                                            <button type="submit">Login</button>
+                                                        </div>
+                                                        <!-- <div  class="button-box btn-hover" style="display: inline-block; background-color: #e97730;
+                                                            ; padding: 15px; margin-top: 10px;">
+                                                                SignIn With Google
+                                                            </div> -->
+                                                        <div
+                                                            style="border: 1px solid rgba(0, 0, 0, 0.199); width: fit-content; padding: 5px 10px; border-radius: 30px;">
+                                                            <a class="button-box btn-hover" href="/auth/google"
+                                                                style="color: black;"><img
+                                                                    src="/uploads/product/google.png" width="25px"
+                                                                    height="25px" alt="">SignIn With Google</a>
+                                                        </div>
+                                                    </div>
+
+
+
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-include('../layouts/footer.ejs')%>
+
+
+
+        </div>
+        <!-- All JS is here -->
+        <!-- Include Toastify library -->
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+        <script src="assets/js/vendor/popper.min.js"></script>
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
+        <script src="assets/js/plugins/wow.js"></script>
+        <script src="assets/js/plugins/scrollup.js"></script>
+        <script src="assets/js/plugins/aos.js"></script>
+        <script src="assets/js/plugins/magnific-popup.js"></script>
+        <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+        <script src="assets/js/plugins/swiper.min.js"></script>
+        <script src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
+        <script src="assets/js/plugins/jquery-ui.js"></script>
+        <script src="assets/js/plugins/jquery-ui-touch-punch.js"></script>
+        <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+        <script src="assets/js/plugins/waypoints.min.js"></script>
+        <script src="assets/js/plugins/jquery.counterup.js"></script>
+        <script src="assets/js/plugins/select2.min.js"></script>
+        <script src="assets/js/plugins/easyzoom.js"></script>
+        <script src="assets/js/plugins/slinky.min.js"></script>
+        <script src="assets/js/plugins/ajax-mail.js"></script>
+        <!-- Main JS -->
+        <script src="assets/js/main.js"></script>
+
+        <script>
+            function validateLoginForm() {
+                var email = document.getElementById("email").value.trim();
+                var password = document.getElementById("password").value.trim();
+
+                // Reset previous error messages
+                document.getElementById("emailError").style.display = "none";
+                document.getElementById("passwordError").style.display = "none";
+
+                // Check if email and password are not blank
+                var emailError = false;
+                var passwordError = false;
+
+                if (email === "") {
+                    document.getElementById("emailError").innerText = "Email cannot be blank";
+                    document.getElementById("emailError").style.display = "inline";
+                    emailError = true;
+                }
+
+                if (password === "") {
+                    document.getElementById("passwordError").innerText = "Password cannot be blank";
+                    document.getElementById("passwordError").style.display = "inline";
+                    passwordError = true;
+                } else if (!isValidPassword(password)) {
+                    document.getElementById("passwordError").innerText = "Password must contain at least one lowercase letter, one uppercase letter, and one number";
+                    document.getElementById("passwordError").style.display = "inline";
+                    passwordError = true;
+                }
+
+                // Email validation using regular expression
+                var emailRegex = /^[^\s@]+@gmail\.com$/;
+                if (email !== "" && !emailRegex.test(email)) {
+                    document.getElementById("emailError").innerText = "Invalid email format";
+                    document.getElementById("emailError").style.display = "inline";
+                    emailError = true;
+                }
+
+                // Return false if there are errors
+                if (emailError || passwordError) {
+                    return false;
+                }
+
+                return true; // Submit the form if validation passes
+            }
+
+            function isValidPassword(password) {
+                var lowercaseRegex = /[a-z]/;
+                var uppercaseRegex = /[A-Z]/;
+                var numberRegex = /[0-9]/;
+                return lowercaseRegex.test(password) && uppercaseRegex.test(password) && numberRegex.test(password);
+            }
+        </script>
+        <script>
+            const form = document.querySelector('form');
+
+            // Add an event listener for form submission
+            form.addEventListener('submit', async (event) => {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Validate the form
+                const isValidForm = validateLoginForm();
+
+                // If the form is valid, submit it using fetch
+                if (isValidForm) {
+                    try {
+                        // Fetch the login endpoint with POST method
+                        const response = await fetch('/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json' // Specify content type as JSON
+                            },
+                            body: JSON.stringify({ // Convert form data to JSON format
+                                email: form.email.value,
+                                password: form.password.value
+                            })
+                        });
+
+                        // Check if the response is successful
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.message === "Verified") {
+                                // Redirect to home page
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Signed in successfully"
+                                });
+                                setTimeout(() => {
+                                    window.location.href = "/";
+                                }, 1000);
+
+                            } else if (data.message === "Incorrect password") {
+                                // Show password error message
+                                console.log('hjello')
+                                document.getElementById("passwordError").innerText = "Incorrect password";
+                                document.getElementById("passwordError").style.display = "inline";
+
+                            } else if (data.message === "Incorrect email") {
+                                // Show email error message\
+                                console.log('heelo')
+                                document.getElementById("emailError").innerText = "Incorrect email";
+                                document.getElementById("emailError").style.display = "inline";
+
+                            }
+                            else if (data.message == 'Admin has blocked') {
+                                console.log('hello')
+                                //     document.getElementById("emailError").innerText = "Admin has blocked";
+                                // document.getElementById("emailError").style.display = "inline";
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "warning",
+                                    title: "You have beeen blocked"
+                                });
+                            }
+                            else if(data.message=='Blocked'){
+                                conosle.logf( "Bloecfke")
+                            }
+                        } else {
+                            // Handle unsuccessful login response
+                            const errorMessage = await response.text();
+                            console.error('Login failed:', errorMessage);
+                        }
+                    } catch (error) {
+                        console.error('Error occurred during login:', error);
+                    }
+                }
+
+            });
+        </script>
+
+
+
+        </body>
+        <!-- Add this to your HTML file to include SweetAlert2 library -->
+
+
+
+
+        </html>

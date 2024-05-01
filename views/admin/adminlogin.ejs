@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Nest Dashboard</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:title" content="" />
+        <meta property="og:type" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:image" content="" />
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+        <!-- Template CSS -->
+        <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <main>
+            
+            </header>
+            <section class="content-main mt-80 mb-80">
+                <div class="card mx-auto card-login">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Sign in</h4>
+                        <form action="/admin/login" onsubmit="return loginvalidation()" method="post">
+                            <% if(typeof message !== 'undefined') { %>
+                                <h4 style="color: red;">
+                                    <%= message %>
+                                </h4>
+                            <% } %>
+                            <div class="mb-3">
+                                <h6 id="emailError" style="color: red;"></h6>
+                                <input class="form-control" id="emailInput" name="email" value="sangeethramesh05@gmail.com" placeholder="Username or email" type="text" />
+                            </div>
+                            <!-- form-group// -->
+                            <div class="mb-3">
+                                <h6 id="passwordError" style="color: red;"></h6>
+                                <input class="form-control" id="passwordInput" name="password" value="Admin@123" placeholder="Password" type="password" />
+                            </div>
+                            <!-- form-group// -->
+                            
+                            <!-- form-group form-check .// -->
+                            <div class="mb-4">
+                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                            </div>
+                            <!-- form-group// -->
+                        </form>
+                        
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        <script>
+            function loginvalidation() {
+                var email = document.getElementById("emailInput").value.trim();
+                var password = document.getElementById("passwordInput").value.trim();
+                var emailError = document.getElementById("emailError");
+                var passwordError = document.getElementById("passwordError");
+                
+                // Reset previous error messages
+                emailError.textContent = "";
+                passwordError.textContent = "";
+        
+                var isValid = true;
+        
+                if (email === "") {
+                    emailError.textContent = "Email cannot be empty";
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    emailError.textContent = "Please enter a valid email address";
+                    isValid = false;
+                }
+        
+                if (password === "") {
+                    passwordError.textContent = "Password cannot be empty";
+                    isValid = false;
+                } else if (!isValidPassword(password)) {
+                    passwordError.textContent = "Password must contain at least one lowercase letter, one uppercase letter, and one number";
+                    isValid = false;
+                }
+        
+                return isValid;
+            }
+        
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@gmail\.com$/;
+                return emailRegex.test(email);
+            }
+        
+            function isValidPassword(password) {
+                var lowercaseRegex = /[a-z]/;
+                var uppercaseRegex = /[A-Z]/;
+                var numberRegex = /[0-9]/;
+                return lowercaseRegex.test(password) && uppercaseRegex.test(password) && numberRegex.test(password);
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+        <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+        <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+        <!-- Main Script -->
+        <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+    </body>
+</html>

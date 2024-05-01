@@ -1,0 +1,526 @@
+<%-include('../layouts/header.ejs')%>
+        <!-- mini cart start -->
+       
+        <div class="breadcrumb-content text-center"
+        style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between; ">
+        <h3 style="margin-left: 100px; margin-top: 20px;">Single Product </h3>
+        <ul style="display: flex; margin-right: 40px;">
+            <li><a href="/home">Home</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li>Single Product </li>
+        </ul>
+    </div>
+        <div class="product-details-area pb-100 pt-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="product-details-img-wrap product-details-vertical-wrap" data-aos="fade-up" data-aos-delay="200">
+                            <div class="product-details-small-img-wrap">
+                                <div class="swiper-container product-details-small-img-slider-1 pd-small-img-style">
+                                    <div class="swiper-wrapper">
+                                        <% for (let i = 0; i < Products.image.length; i++) { %>
+                                            <div class="swiper-slide">
+                                                
+                                                <% if (Products.image[i]) { %>
+                                                    <div class="product-details-small-img" style="width: 50px; height: 50px;">
+                                                        <img src="/uploads/product/<%= Products.image[i] %>" alt="Product Thumbnail">
+                                                    </div>
+                                                <% } %>
+                                            </div>
+                                        <% } %>
+                                       
+                                      
+                                        
+                                    </div>
+                                </div>
+                                <div class="pd-prev pd-nav-style"> <i class="ti-angle-up"></i></div>
+                                <div class="pd-next pd-nav-style"> <i class="ti-angle-down"></i></div>
+                            </div>
+                            <div class="swiper-container product-details-big-img-slider-1 pd-big-img-style">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide swiper-slide-active" role="group" aria-label="1/3" style="width: 470px;" >
+                                        <div class="easyzoom-style" style="height: 200px;">
+                                            <div class="easyzoom easyzoom--overlay" style="width: 200px; height: 290px; margin-left: 100px;" >
+                                                <a href="/uploads/product/<%= Products.image[0] %>">
+                                                    <img src="/uploads/product/<%= Products.image[0] %>" alt="">
+                                                </a>
+                                            </div>
+                                            <a class="easyzoom-pop-up img-popup" href="/uploads/product/<%= Products.image[0] %>">
+                                                <i class="pe-7s-search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="easyzoom-style" style="height: 200px;">
+                                            <div class="easyzoom easyzoom--overlay" style="width: 200px; height: 290px; margin-left: 100px;">
+                                                <a href="/uploads/product/<%= Products.image[1] %>">
+                                                    <img src="/uploads/product/<%= Products.image[1] %>" alt="">
+                                                </a>
+                                            </div>
+                                            <a class="easyzoom-pop-up img-popup" href="/uploads/product/<%= Products.image[1] %>">
+                                                <i class="pe-7s-search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="easyzoom-style" style="height: 400px;">
+                                            <div class="easyzoom zoom-in easyzoom--overlay" style="width: 200px; height: 290px; margin-left: 100px;">
+                                                    <img src="/uploads/product/<%= Products.image[2] %>" alt="">
+                                            </div>
+                                            <a class="easyzoom-pop-up img-popup" href="/uploads/product/<%= Products.image[2] %>">
+                                                <i class="pe-7s-search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
+                            <h2><%= Products.productname %></h2>
+                            <div class="product-details-price">
+                                <span class="new-price"  style="color: green;"><% if (Products?.offer?.offer) { %>
+                                    <% var finalPrice = Products.price; %>
+                                    
+                                    <% if ( Products?.categoryId?.Offer?.offer > Products?.offer?.offer) { %>
+                                        
+                                        <% finalPrice=Products.price-((Products.categoryId.Offer.offer*Products.price)/100)%>
+                                    <% } else { %>
+                                       
+                                        <% finalPrice = Products.price - (Products.price * (Products?.offer?.offer / 100)); %>
+                                    <% } %>
+                                    <span class="old-price">$ <%= Products.price %></span>
+                                    <span class="new-price">$ <%= finalPrice %></span>
+                                <% } else if (Products.categoryId.Offer) { %>
+                                    <%var newTotal=Products.price%>
+                                    <% var newTotal = Products.price - (Products.price * (Products?.categoryId.Offer.offer/ 100)); %>
+                                    
+                                    <span class="old-price">$ <%= Products.price %></span>
+                                    <span class="new-price">$ <%= newTotal %></span>
+                                <% } else { %>
+                                    <span class="regular-price">$ <%= Products.price %></span>
+                                <% } %></span>
+                            </div>
+                            <div class="product-details-price">
+                                <span class="new-price fs-6"  style="color: black;">Category:<%= Products.categoryId.categoryname %></span>
+                            </div>
+                            <div class="product-details-price">
+                                <% if (Products.quantity === 0) { %>
+                                    <span class="new-price" style="color: red;">Sold out</span>
+                                <% } else { %>
+                                    <span class="new-price" style="color: red;">Stocks left: <%= Products.quantity %></span>
+                                <% } %>
+                            </div>
+                            <div class="product-details-review">
+                                <div class="product-rating">
+                                    <i class=" ti-star"></i>
+                                    <i class=" ti-star"></i>
+                                    <i class=" ti-star"></i>
+                                    <i class=" ti-star"></i>
+                                    <i class=" ti-star"></i>
+                                </div>
+                                
+                            </div>
+                            <!-- <div class="product-color product-color-active product-details-color">
+                                <span>Color :</span>
+                                <ul>
+                                    <li><a title="Pink" class="pink" href="#">pink</a></li>
+                                    <li><a title="Yellow" class="active yellow" href="#">yellow</a></li>
+                                    <li><a title="Purple" class="purple" href="#">purple</a></li>
+                                </ul> -->
+                            <!-- </div>  -->
+                            <div class="product-details-action-wrap" style="margin-top: 20px;">
+                                <% if(Products.quantity>0){ %>
+                                    <!-- <div class="product-quality">
+                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                    </div> -->
+                                    <div class="single-product-cart btn-hover">
+                                        <a onclick="checkLoginAndAddToCart('<%= Products._id %>')" href="#">Add to cart</a>
+                                    </div>
+                                <% } %>
+                                
+                                <div class="single-product-wishlist">
+                                    <a class="product-action-btn-1" id="<%= Products._id%>" title="Wishlist"
+                                        onclick="checkLoginAndAddWishlist(this.id)"><i class="pe-7s-like"></i></a>
+                                </div>
+                                <div class="single-product-compare">
+                                    <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="description-review-area pb-85">
+            <div class="container">
+                <div class="description-review-topbar nav" data-aos="fade-up" data-aos-delay="200">
+                    <a class="active" data-bs-toggle="tab" href="#des-details1"> Description </a>
+                    <a data-bs-toggle="tab" href="#des-details2" class=""> Information </a>
+                    <a data-bs-toggle="tab" href="#des-details3" class=""> Reviews </a>
+                </div>
+                <div class="tab-content">
+                    <div id="des-details1" class="tab-pane active">
+                        <div class="product-description-content text-center">
+                            <p data-aos="fade-up" data-aos-delay="200"><%= Products.description %></p>
+                            
+                        </div>
+                    </div>
+                    <div id="des-details2" class="tab-pane">
+                        <div class="specification-wrap table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="width1">Category</td>
+                                        <td>Luxury Watch, Smart Watch, Analog Watch, Solar Watch</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Color</td>
+                                        <td>Blue, Gray, Pink</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="des-details3" class="tab-pane">
+                        <div class="review-wrapper">
+                            <h3><%= Products.productname %></h3>
+                            <div class="single-review">
+                                <div class="review-img">
+                                    <img src="/assets/images/product-details/review-1.png" alt="">
+                                </div>
+                                <div class="review-content">
+                                    <div class="review-rating">
+                                        <a href="#"><i class="ti-star"></i></a>
+                                        <a href="#"><i class="ti-star"></i></a>
+                                        <a href="#"><i class="ti-star"></i></a>
+                                        <a href="#"><i class="ti-star"></i></a>
+                                        <a href="#"><i class="ti-star"></i></a>
+                                    </div>
+                                    <h5><span>HasTech</span> - April 29, 2022</h5>
+                                    <p><%=Products.description %></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ratting-form-wrapper">
+                            <h3>Add a Review</h3>
+                            <p>Your email address will not be published. Required fields are marked <span>*</span></p>
+                            <div class="your-rating-wrap">
+                                <span>Your rating</span>
+                                <div class="your-rating">
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                </div>
+                            </div>
+                            <div class="ratting-form">
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="rating-form-style mb-15">
+                                                <label>Name <span>*</span></label>
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="rating-form-style mb-15">
+                                                <label>Email <span>*</span></label>
+                                                <input type="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="rating-form-style mb-15">
+                                                <label>Your review <span>*</span></label>
+                                                <textarea name="Your Review"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="save-email-option">
+                                                <p><input type="checkbox"> <label>Save my name, email, and website in this browser for the next time I comment.</label></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-submit">
+                                                <input type="submit" value="Submit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="related-product-area pb-95">
+            <div class="container">
+                <div class="section-title-2 st-border-center text-center mb-75" data-aos="fade-up" data-aos-delay="200">
+                    <h2>Related Products</h2>
+                </div>
+                <div class="related-product-active swiper-container">
+                    <div class="swiper-wrapper">
+                        <% ProducT.slice(0, ProducT.length).forEach(product => { %>
+                           
+                        
+                          
+                                <div class="swiper-slide">
+                                    <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">
+                                        <div class="product-img  img-zoom mb-25" style="width: 200px; height: 300px;">
+                                            <a href="/singleproduct/<%= product._id %>">
+                                                <img src="/uploads/product/<%= product.image[0] %>" alt="">
+                                            </a>
+                                            <div class="product-badge badge-top badge-right badge-pink">
+                                            
+                                            </div>
+                                            <div class="product-action-wrap">
+                                                <button class="product-action-btn-1"
+                                                                    id="<%=product._id%>" title="Wishlist"
+                                                                    onclick="checkLoginAndAddWishlist(this.id)"><i
+                                                                        class="pe-7s-like"></i></button>
+                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="pe-7s-look"></i>
+                                                </button>
+                                            </div>
+                                            <div class="product-action-2-wrap">
+                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3><a href=""><%= product.productname %></a></h3>
+                                            <div class="product-price">
+                                                <span class="new-price">$<%= product.price %> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                        <% }); %>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-include('../layouts/footer.ejs')%>
+        
+    </div>
+    <!-- All JS is here -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Image Zoom functions go here
+            function zoomIn(event, zoomFactor) {
+                const image = event.target;
+                image.style.transform = scale(`${zoomFactor}`);
+            }
+    
+            function resetZoom(event) {
+                const image = event.target;
+                image.style.transform = 'scale(1)';
+            }
+    
+            const productImages = document.querySelectorAll('.zoom-in img');
+    
+            productImages.forEach(img => {
+                img.addEventListener('mouseover', function () {
+                    img.style.transform = 'scale(2.0)';
+                    img.style.transition = 'transform 0.3s ease';
+                });
+    
+                img.addEventListener('mousemove', function (e) {
+                    const boundingBox = img.getBoundingClientRect();
+                    const offsetX = (e.clientX - boundingBox.left) / boundingBox.width;
+                    const offsetY = (e.clientY - boundingBox.top) / boundingBox.height;
+    
+                    img.style.transformOrigin = `${offsetX * 100}%` `${offsetY * 100}%`;
+                });
+    
+                img.addEventListener('mouseleave', function () {
+                    img.style.transform = 'scale(1)';
+                });
+    
+                img.addEventListener('mousemove', function (e) {
+                    zoomIn(e, 1.5);
+                });
+    
+                img.addEventListener('mouseout', resetZoom);
+            });
+        });
+    </script>
+    <script>
+        function checkLoginAndAddToCart(ProductElement) {
+            // Check if user is logged in
+            if ("<%= req.session._id %>" === null || "<%= req.session._id %>" === "") {
+                // User is not logged in, display SweetAlert alert
+                window.location.href='/login'
+            } else {
+                // User is logged in, proceed with adding to cart
+                AddToCart(ProductElement);
+            }
+        }
+    
+        function AddToCart(ProductElement) {
+            console.log('1');
+            fetch('/addtocart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: ProductElement })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Show success alert using SweetAlert
+                if (data.message === "Product Already Added to cart") {
+                    const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "warning",
+                                title: "Product Already Added to Cart",
+                                width:'400'
+                            });
+                } else if (data.message === "Product Added to cart") {
+                    const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Product Added to Cart",
+                                width:'400'
+                            });
+                }
+            })
+            .catch(error => {
+                console.log('There was a problem with the fetch operation', error);
+            });
+        }
+    </script>
+     <script>
+        function checkLoginAndAddWishlist(productId) {
+            // Check if user is logged in
+            if ("<%= req.session._id %>" === null || "<%= req.session._id %>" === "") {
+                // User is not logged in, display SweetAlert alert
+                window.location.href = '/login'
+            } else {
+                // User is logged in, proceed with adding to cart\
+                console.log('2')
+                addToWishlist(productId);
+            }
+        }
+        function addToWishlist(productId) {
+            fetch('/addtowishlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Show success alert using SweetAlert
+                    if (data.message === "Product Already Added to Wishlist") {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "warning",
+                            title: "Product Already Added to Wishlist",
+                            width:'400'
+                        });
+
+                    } else if (data.message === "Product Added to Wislist") {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "success",
+                            title: "Product Added to Wislist",
+                            width:'400'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log('There was a problem with the fetch operation', error);
+                });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/assets/js/vendor/popper.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins/wow.js"></script>
+    <script src="/assets/js/plugins/scrollup.js"></script>
+    <script src="/assets/js/plugins/aos.js"></script>
+    <script src="/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/assets/js/plugins/swiper.min.js"></script>
+    <script src="/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/plugins/waypoints.min.js"></script>
+    <script src="/assets/js/plugins/jquery.counterup.js"></script>
+    <script src="/assets/js/plugins/select2.min.js"></script>
+    <script src="/assets/js/plugins/easyzoom.js"></script>
+    <script src="/assets/js/plugins/slinky.min.js"></script>
+    <script src="/assets/js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="/assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/urdan/urdan/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jan 2024 09:30:29 GMT -->
+</html>

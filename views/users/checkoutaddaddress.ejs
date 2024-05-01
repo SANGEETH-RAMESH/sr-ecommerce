@@ -1,0 +1,245 @@
+<%-include('../layouts/header.ejs')%>
+        <!-- mini cart start -->
+        <div class="breadcrumb-content text-center"
+            style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+            <h2 style="margin-left: 40px; margin-top: 20px;">Add Address </h2>
+            <ul style="display: flex; margin-right: 40px;">
+                <li><a href="/">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li><a href="/my-account">My Account</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li><a href="/address">Address</a></li>
+                <li><i class="ti-angle-right active"></i></li>
+                <li>Add Address </li>
+            </ul>
+        </div>
+
+        <!-- my account wrapper start -->
+        <div class="my-account-wrapper pb-100 pt-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- My Account Page Start -->
+                        <div class="myaccount-page-wrapper">
+                            <!-- My Account Tab Menu Start -->
+                            <div class="row">
+                                
+                                <!-- My Account Tab Menu End -->
+                                <!-- My Account Tab Content Start -->
+                                <div class="col-lg-9 col-md-8">
+                                    <div class="tab-content" id="myaccountContent">
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
+                                            <div class="myaccount-content">
+                                                <form action="/addcheckoutaddress" method="post" class="needs-validation" novalidate>
+                                                    <div class="mb-3">
+                                                        <label for="name" class="form-label">Name:</label>
+                                                        <input type="text" id="name" name="name" class="form-control" required>
+                                                        <span id="rnameError" style="color: red;"></span>
+                                                        <div class="invalid-feedback">Please provide a valid name.</div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="city" class="form-label">City:</label>
+                                                        <input type="text" id="city" name="city" class="form-control" required>
+                                                        <span id="rcityError" style="color: red;"></span>
+                                                        <div class="invalid-feedback">Please provide a valid city.</div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="zipcode" class="form-label">Zipcode:</label>
+                                                        <input type="text" id="zipcode" name="zipcode" class="form-control" required>
+                                                        <span id="rzipcodeError" style="color: red;"></span>
+                                                        <div class="invalid-feedback">Please provide a valid 6-digit zipcode.</div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="state" class="form-label">State:</label>
+                                                        <select id="state" name="state" class="form-control" required>
+                                                            <option value="" disabled selected>Select a state</option>
+                                                            <option value="Kerala">Kerala</option>
+                                                            <option value="Karnataka">Karnataka</option>
+                                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                                        </select>
+                                                        <span id="rstateError" style="color: red;"></span>
+                                                        <div class="invalid-feedback">Please provide a state.</div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="country" class="form-label">Country:</label>
+                                                        <select id="country" name="country" class="form-control" required>
+                                                            <option value="" disabled selected>Select a country</option>
+                                                            <option value="India">India</option>
+                                                        </select>
+                                                        <span id="rcountryError" style="color: red;"></span>
+                                                        <div class="invalid-feedback">Please select a country.</div>
+                                                    </div>
+                                                    <div>
+                                                        <button type="button" onclick="if (validateForm()) this.form.submit();" class="btn btn-hover" style="background-color: #e97730;">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    <!-- Single Tab Content End -->
+                                    <!-- Single Tab Content Start -->
+                                   
+
+                                </div>
+                            </div> <!-- My Account Tab Content End -->
+                        </div>
+                    </div> <!-- My Account Page End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- my account wrapper end -->
+    <%-include('../layouts/footer.ejs')%>
+    <!-- Mobile Menu start -->
+    <div class="off-canvas-active">
+        <a class="off-canvas-close"><i class=" ti-close "></i></a>
+        <div class="off-canvas-wrap">
+            <div class="welcome-text off-canvas-margin-padding">
+                <p>Default Welcome Msg! </p>
+            </div>
+            <div class="mobile-menu-wrap off-canvas-margin-padding-2">
+                <div id="mobile-menu" class="slinky-mobile-menu text-left">
+                    <ul>
+                        <li>
+                            <a href="home">HOME</a>
+
+                        </li>
+                        <li>
+                            <a href="shop">SHOP</a>
+
+                        </li>
+                        <li>
+                            <a href="#">PAGES </a>
+                            <ul>
+
+                                <li><a href="cart">Cart Page</a></li>
+                                <li><a href="checkout">Checkout </a></li>
+                                <li><a href="my-account">My Account</a></li>
+                                <li><a href="wishlist">Wishlist </a></li>
+                                <li><a href="login-register">Login / Register </a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">BLOG </a>
+
+                        </li>
+                        <li>
+                            <a href="#">ABOUT US</a>
+                        </li>
+                        <li>
+                            <a href="#">CONTACT US</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="language-currency-wrap language-currency-wrap-modify">
+                <div class="currency-wrap border-style">
+                    <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
+                    <div class="currency-dropdown">
+                        <ul>
+                            <li><a href="#">Taka (BDT) </a></li>
+                            <li><a href="#">Riyal (SAR) </a></li>
+                            <li><a href="#">Rupee (INR) </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="language-wrap">
+                    <a class="language-active" href="#"><img src="/assets/images/icon-img/flag.png" alt=""> English
+                        <i class=" ti-angle-down "></i></a>
+                    <div class="language-dropdown">
+                        <ul>
+                            <li><a href="#"><img src="/assets/images/icon-img/flag.png" alt="">English </a></li>
+                            <li><a href="#"><img src="/assets/images/icon-img/spanish.png" alt="">Spanish</a></li>
+                            <li><a href="#"><img src="/assets/images/icon-img/arabic.png" alt="">Arabic </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- All JS is here -->
+
+    </script>
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value.trim();
+            var city = document.getElementById('city').value.trim();
+            var zipcode = document.getElementById('zipcode').value.trim();
+            var state = document.getElementById('state').value.trim();
+            var country = document.getElementById('country').value.trim(); 
+    
+            var namePattern = /^[a-zA-Z\s]+$/;  // Allow alphabets and spaces
+            var cityPattern = /^[a-zA-Z\s]+$/;  // Allow alphabets and spaces
+            var zipcodePattern = /^[0-9]{6}$/;
+    
+            var valid = true;
+    
+            if (!namePattern.test(name)) {
+                document.getElementById('rnameError').innerText = 'Name should not contain only special character and spaces';
+                valid = false;
+            } else {
+                document.getElementById('rnameError').innerText = '';
+            }
+    
+            if (!cityPattern.test(city)) {
+                document.getElementById('rcityError').innerText = 'City should not contain only special character and spaces';
+                valid = false;
+            } else {
+                document.getElementById('rcityError').innerText = '';
+            }
+    
+            if (!zipcodePattern.test(zipcode)) {
+                document.getElementById('rzipcodeError').innerText = 'Zipcode should contain 6 digits';
+                valid = false;
+            } else {
+                document.getElementById('rzipcodeError').innerText = '';
+            }
+    
+            if (state === '') {
+                document.getElementById('rstateError').innerText = 'Please select a state';
+                valid = false;
+            } else {
+                document.getElementById('rstateError').innerText = '';
+            }
+            
+            if (country === '') {
+                document.getElementById('rcountryError').innerText = 'Please select a country'; // Error message for country field
+                valid = false;
+            } else {
+                document.getElementById('rcountryError').innerText = ''; // Clear error message for country field
+            }
+    
+            return valid;
+        }
+    </script>
+    <script src="/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/assets/js/vendor/popper.min.js"></script>
+    <script src="/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="/assets/js/plugins/wow.js"></script>
+    <script src="/assets/js/plugins/scrollup.js"></script>
+    <script src="/assets/js/plugins/aos.js"></script>
+    <script src="/assets/js/plugins/magnific-popup.js"></script>
+    <script src="/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/assets/js/plugins/swiper.min.js"></script>
+    <script src="/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/assets/js/plugins/jquery-ui.js"></script>
+    <script src="/assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/assets/js/plugins/waypoints.min.js"></script>
+    <script src="/assets/js/plugins/jquery.counterup.js"></script>
+    <script src="/assets/js/plugins/select2.min.js"></script>
+    <script src="/assets/js/plugins/easyzoom.js"></script>
+    <script src="/assets/js/plugins/slinky.min.js"></script>
+    <script src="/assets/js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="/assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from htmldemo.net/urdan/urdan/my-account.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jan 2024 09:30:35 GMT -->
+
+</html>

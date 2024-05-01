@@ -1,0 +1,111 @@
+<%-include('../layouts/header.ejs')%>
+<div class="breadcrumb-content text-center"
+            style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+            <h3 style="margin-left: 100px; margin-top: 20px;">Order Details </h3>
+            <ul style="display: flex; margin-right: 40px;">
+                <li><a href="/">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li><a href="/order">Order</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li>Order Details </li>
+            </ul>
+        </div>
+<section class="py-4">
+  <% if(order!==null){%>
+    <div class="container">
+      <h3 class="d-none">Account</h3>
+  
+      <div class="row">
+        <!-- Order Details and Address -->
+       
+        <div class="col-md-6 d-flex flex-column">
+          <div class="card flex-grow-1">
+            <div class="card-body">
+              <%=console.log(order,'dfdf')%>
+              <!-- Order Details -->
+              <div class="order-details">
+                <h4>Order Details</h4>
+                <p>Order ID: <span class="fw-bolder text-dark"> <%= order.orderId %></span></p>
+                <p>Date: <span class="fw-bolder text-dark"> <%= order.currentDate.toLocaleString() %></span></p>
+                <p>Total Price: <span class="fw-bolder text-dark">Rs. <%= order.totalAmount  %></span></p>
+                <p>Payment Method: <span class="fw-bolder text-dark"> <%= order.paymentMethod %></span></p>
+              </div>
+              <!-- Status text -->
+              <p class="status-text fw-bolder text-dark">Payment status: <span class="fw-bolder text-success" style="font-size: 18px;"><%= order.paymentStatus %></span></p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-6 d-flex flex-column">
+          <div class="card flex-grow-1 mt-3 mt-md-0">
+            <div class="card-body">
+              <!-- Address -->
+              <div class="address">
+                <h4>Address</h4>
+                
+                <% address.forEach(addresss=>{%>
+                  
+                <p>Name: <span class="fw-bolder text-dark"><%= addresss.address[0].name %></span></p>
+                <p>Mobile:<span class="fw-bolder text-dark"> <%= user.mobile %></span></p>
+                <p>Country: <span class="fw-bolder text-dark"><%= addresss.address[0].country %></span></p>
+                <p>City:<span class="fw-bolder text-dark"> <%= addresss.address[0].city %> </span></p>
+                <p>State:<span class="fw-bolder text-dark"> <%= addresss.address[0].state %></span></p>
+                <p>Pincode:<span class="fw-bolder text-dark"> <%= addresss.address[0].Zipcode %></span></p>
+                <!-- Add more address details as needed -->
+                <%})%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product Details -->
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <!-- Product Details -->
+              <div class="product-details">
+                <div class="row">
+                  
+                <%order.items.forEach(orders=>{%>
+                  <hr>
+                  <!-- Left side for the image -->
+                  <div class="col-md-4">
+                    <img src="/uploads/product/<%=orders.productId.image[0]%>" alt="Product Image" class="img-fluid" style="height: 17em;">
+                  </div>
+                  <!-- Right side for other details -->
+                  <div class="col-md-8 ">
+                    <h4>Product Details</h4>
+                    <div class="product">
+                      
+                      
+                           <%=console.log(order,'dfd')%>
+                      <p>Product Name: <span class="fw-bolder text-dark"> <%= orders.productId.productname %></span></p>
+                      <p>Quantity: <span class="fw-bolder text-dark"> <%= orders.quantity %></span></p>
+                      <p>Price: <span class="fw-bolder text-dark">$ <%= orders.price  %></span></p>
+                      
+                      <p>Details: <span class="fw-bolder text-dark"> <%= orders.productId.description %></span></p>
+      
+                  </div> 
+                </div>
+                
+              <%})%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  
+    </div>
+    <%}else{%>
+      <%=console.log('dfd')%>
+
+      <script>
+        window.location.href='/login'
+      </script>
+      <%}%>
+      </section>
+
+<%-include('../layouts/footer.ejs')%>

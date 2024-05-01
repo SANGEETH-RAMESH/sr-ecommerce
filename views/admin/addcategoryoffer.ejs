@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Style for the "Back to Dashboard" button */
+        #Backtocategory {
+            background-color: #4CAF50;
+            /* Green background */
+            border: none;
+            color: white;
+            /* White text */
+            padding: 10px 20px;
+            /* Padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            /* Add margin to separate it from other elements */
+            cursor: pointer;
+        }
+
+        /* Style on hover */
+        #Backtocategory:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index" class="brand-wrap">
+                <span style="font-family: Island Moments, cursive;font-size: 50px;
+                    font-style: normal; text-align: center;">SR</span>
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"><i
+                        class="text-muted material-icons md-menu_open"></i></button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/index">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/userdetails">
+                        <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category">
+                        <i class="icon fa fa-list-alt" aria-hidden="true"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/product">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/loadadminorder">
+                        <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/loadcoupon">
+                        <i class="icon fas fa-gift"></i>
+                        <span class="text">Coupon</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/salesreport">
+                        <i class="icon fas fa-chart-bar"></i>
+                        <span class="text">Sales </span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/offer">
+                        <i class="icon fas fa-tags"></i>
+                        <span class="text">Offer </span>
+                    </a>
+                </li>
+
+            </ul>
+            <hr />
+
+            <br />
+            <br />
+        </nav>
+
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage"
+                            aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="/adminassets/imgs/theme/flag-us.png"
+                                    alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-fr.png"
+                                    alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-jp.png"
+                                    alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-cn.png"
+                                    alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/adminassets/imgs/people/avatar-2.png" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
+                                center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Add Category Offer</h2>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+
+                        <div class="card-body">
+                            <form action="/addcategoryoffer" method="post" id="productForm">
+                                <% if (typeof message !=='undefined' ) { %>
+                                    <h4 style="color: red;">
+                                        <%= message %>
+                                    </h4>
+                                    <% } %>
+
+                                        <div class="mb-4">
+
+                                            <div class="col-md-12">
+                                                <div class="mb-4">
+                                                    <label class="form-label">Category</label>
+
+                                                    <select id="categorySelect" name="categoryId" class="form-control">
+                                                        <option value="">Select Category</option>
+                                                        <!-- Blank option -->
+                                                        <% categoryData.forEach(category=> { %>
+                                                            <option value="<%= category._id %>">
+                                                                <%= category.categoryname %>
+                                                            </option> <!-- Use category._id as the value -->
+                                                            <% }); %>
+                                                    </select>
+                                                    <input type="hidden" name="categoryName" id="categoryName">
+                                                    <!-- Add hidden input field for category name -->
+                                                    <span id="categoryError" style="color: red; "></span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="mb-4">
+                                            <label class="form-label">Offer</label>
+                                            <input type="number" placeholder="Enter offer" name="offer" min="1" max="50" class="form-control" id="offer" />
+                                            <span id="offererror" style="color: red; display: none;"></span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"
+                                            onclick="return validateForm()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- card end// -->
+
+                    <!-- card end// -->
+                </div>
+
+                <!-- card end// -->
+
+            </div>
+        </section>
+        <!-- content-main end// -->
+
+    </main>
+    <script>
+        document.getElementById("productForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Perform form validation
+            if (validateForm()) {
+               
+
+                // Get values from form fields and append to FormData object
+                const categoryId = document.querySelector("#categorySelect").value;
+
+
+                const offer = document.querySelector("#offer").value;
+
+                const data={
+                    categoryId:categoryId,
+                    offer:offer
+                }
+ 
+
+                fetch('/addcategoryoffer', {
+                    method: 'POST',
+                    headers:{
+                        'Content-type':'application/json'
+                    },
+                    body: JSON.stringify(data) 
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Show success alert using SweetAlert
+                        if (data.message === "Offer Added") {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Offer Added",
+                                
+                            })
+                            .then(() => {
+                                window.location.href = '/admin/offer';
+                            });
+                            form.reset(); // Reset form fields
+                        } else if (data.message === "Offer Already Exist") {
+                            console.log("already")
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "warning",
+                                title: "Offer Already Exist",
+                                
+                            })
+                            
+                        } else {
+                            // Handle other responses
+                        }
+                    })
+                    .catch(error => {
+                        console.log('There was a problem with the fetch operation', error);
+                        // Handle errors
+                    });
+            }
+        });
+        function validateForm() {
+            console.log('hello')
+
+            var categoryName = document.getElementById("categorySelect").value.trim();
+
+            var offer = document.getElementById("offer").value.trim();
+
+
+
+            var categoryError = document.getElementById("categoryError");
+
+            var offerError = document.getElementById("offererror");
+
+            categoryError.textContent = "";
+
+            offerError.textContent = "";
+
+
+            var isValid = true;
+
+
+
+            if (categoryName === "") {
+                categoryError.textContent = "Please select a category";
+                categoryError.style.display = "inline"; // Show error message
+                isValid = false; // Set validation flag to false
+            } else {
+                categoryError.style.display = "none"; // Hide error message if category is selected
+            }
+
+
+
+
+            // Validate quantity
+            if (offer === "") {
+                offerError.textContent = "offer cannot be empty";
+                offerError.style.display = "inline"; // Show error message
+                isValid = false;
+            }
+
+
+
+            return isValid;
+        }
+    </script>
+    <script>
+        document.getElementById('categorySelect').addEventListener('change', function () {
+            var categoryName = this.options[this.selectedIndex].text;
+            document.getElementById('categoryName').value = categoryName;
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Style for the "Back to Dashboard" button */
+        #Backtocategory {
+            background-color: #4CAF50;
+            /* Green background */
+            border: none;
+            color: white;
+            /* White text */
+            padding: 10px 20px;
+            /* Padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            /* Add margin to separate it from other elements */
+            cursor: pointer;
+        }
+
+        /* Style on hover */
+        #Backtocategory:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index" class="brand-wrap">
+                <span style="font-family: Island Moments, cursive;font-size: 50px;
+                    font-style: normal; text-align: center;">SR</span>
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"><i
+                        class="text-muted material-icons md-menu_open"></i></button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/index">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/userdetails">
+                      <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/category">
+                        <i class="icon fa fa-list-alt" aria-hidden="true"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/product">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+  
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/loadadminorder">
+                        <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/loadcoupon">
+                        <i class="icon fas fa-gift"></i>
+                        <span class="text">Coupon</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/salesreport">
+                        <i class="icon fas fa-chart-bar"></i> 
+                        <span class="text">Sales </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer">
+                        <i class="icon fas fa-tags"></i>
+                        <span class="text">Offer </span>
+                    </a>
+                </li>
+  
+            </ul>
+            <hr />
+  
+            <br />
+            <br />
+        </nav>
+
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage"
+                            aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="/adminassets/imgs/theme/flag-us.png"
+                                    alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-fr.png"
+                                    alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-jp.png"
+                                    alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-cn.png"
+                                    alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/adminassets/imgs/people/avatar-2.png" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
+                                center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Add New Coupon</h2>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+
+                        <div class="card-body">
+                            <form action="/addcoupon" method="post" id="productForm">
+                                <% if(typeof message !=='undefined' ) { %>
+                                    <h4 style="color: red;">
+                                        <%= message %>
+                                    </h4>
+                                    <% } %>
+                                        <div class="mb-4">
+                                            <label for="product_name" class="form-label">Coupon Code</label>
+                                            <input type="text" placeholder="Enter Coupon Name" name="couponcode"
+                                                class="form-control" id="couponcode" />
+                                            <span id="couponcodeError" style="color: red; display: none;"></span>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label">Full description</label>
+                                            <textarea placeholder="Type here" name="description" class="form-control"
+                                                rows="4" id="description"></textarea>
+                                            <span id="descriptionError" style="color: red; display: none;"></span>
+                                        </div>
+                                        
+                                        <div class="mb-4">
+                                            <label class="form-label">Min Price</label>
+                                            <input type="number" placeholder="Enter Price" name="minprice" min="1"
+                                                max="150" class="form-control" id="minprice" />
+                                            <span id="minpriceError" style="color: red; display: none; "></span>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label">Discount</label>
+                                            <input type="number" placeholder="Enter Price" name="discount" min="1"
+                                                max="50" class="form-control" id="discount" />
+                                            <span id="discountError" style="color: red; display: none; "></span>
+                                        </div>
+                                        
+                                        
+                                        <button type="submit" class="btn btn-primary"
+                                            onclick="return couponForm()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- card end// -->
+
+                    <!-- card end// -->
+                </div>
+
+                <!-- card end// -->
+
+            </div>
+        </section>
+        <!-- content-main end// -->
+
+    </main>
+    <script>
+        function couponForm() {
+            var couponcode = document.getElementById("couponcode").value.trim();
+            var description = document.getElementById("description").value.trim();
+            var minprice = document.getElementById("minprice").value.trim();
+            var discount = document.getElementById("discount").value.trim();
+            var isValid = true;
+    
+            // Coupon code validation
+            if (couponcode === "") {
+            document.getElementById("couponcodeError").innerText = "Coupon code cannot be blank";
+            document.getElementById("couponcodeError").style.display = "block"; // Show the error span
+            isValid = false;
+        } else if (!/^2024-SR\d{4}$/.test(couponcode)) {
+            document.getElementById("couponcodeError").innerText = "Coupon code must start with '2024-SR' followed by four numbers";
+            document.getElementById("couponcodeError").style.display = "block"; // Show the error span
+            isValid = false;
+        } else {
+            document.getElementById("couponcodeError").innerText = "";
+            document.getElementById("couponcodeError").style.display = "none"; // Hide the error span
+        }
+    
+            // Description validation
+            if (description === "") {
+                document.getElementById("descriptionError").innerText = "Description cannot be blank";
+                document.getElementById("descriptionError").style.display = "block"; // Show the error span
+                isValid = false;
+            } else {
+                document.getElementById("descriptionError").innerText = "";
+                document.getElementById("descriptionError").style.display = "none"; // Hide the error span
+            }
+    
+            // Min price validation
+            if (minprice === "") {
+                document.getElementById("minpriceError").innerText = "Min price cannot be blank";
+                document.getElementById("minpriceError").style.display = "block"; // Show the error span
+                isValid = false;
+            } else if (parseFloat(minprice) <= 50) {
+                document.getElementById("minpriceError").innerText = "Min price must be greater than 50";
+                document.getElementById("minpriceError").style.display = "block"; // Show the error span
+                isValid = false;
+            } else {
+                document.getElementById("minpriceError").innerText = "";
+                document.getElementById("minpriceError").style.display = "none"; // Hide the error span
+            }
+    
+            // Discount validation
+            if (discount === "") {
+                document.getElementById("discountError").innerText = "Discount cannot be blank";
+                document.getElementById("discountError").style.display = "block"; // Show the error span
+                isValid = false;
+            } else if (parseFloat(discount) < 0) {
+                document.getElementById("discountError").innerText = "Discount cannot be less than 0";
+                document.getElementById("discountError").style.display = "block"; // Show the error span
+                isValid = false;
+            } else if (parseFloat(discount) > parseFloat(minprice) * 0.5) {
+                document.getElementById("discountError").innerText = "Discount cannot be greater than 50% of min price";
+                document.getElementById("discountError").style.display = "block"; // Show the error span
+                isValid = false;
+            } else {
+                document.getElementById("discountError").innerText = "";
+                document.getElementById("discountError").style.display = "none"; // Hide the error span
+            }
+    
+            return isValid;
+        }
+    </script>
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index" class="brand-wrap">
+                <span style="font-family: Island Moments, cursive;font-size: 50px;
+                font-style: normal; text-align: center;">SR</span>
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"><i
+                        class="text-muted material-icons md-menu_open"></i></button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/index">
+                        <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/userdetails">
+                      <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/category">
+                        <i class="icon fa fa-list-alt" aria-hidden="true"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/product">
+                        <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+  
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/loadadminorder">
+                        <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/loadcoupon">
+                        <i class="icon fas fa-gift"></i>
+                        <span class="text">Coupon</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/salesreport">
+                        <i class="icon fas fa-chart-bar"></i> 
+                        <span class="text">Sales </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer">
+                        <i class="icon fas fa-tags"></i>
+                        <span class="text">Offer </span>
+                    </a>
+                </li>
+  
+            </ul>
+            <hr />
+  
+            <br />
+            <br />
+        </nav>
+
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage"
+                            aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="/adminassets/imgs/theme/flag-us.png"
+                                    alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-fr.png"
+                                    alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-jp.png"
+                                    alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/adminassets/imgs/theme/flag-cn.png"
+                                    alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/adminassets/imgs/people/avatar-2.png" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit
+                                Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help
+                                center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Edit Product</h2>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4>Basic</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="" id="edit-product-form" method="post"
+                               enctype="multipart/form-data">
+                                <% if(typeof message !=='undefined' ) { %>
+                                    <h4 style="color: red;">
+                                        <%= message %>
+                                    </h4>
+                                    <% } %>
+                                    <%=console.log('dfls',Products.productname)%>
+                                        <div class="mb-4">
+                                            <label for="product_name" class="form-label">Product Name</label>
+                                            <input type="text" placeholder="Enter Product Name" name="productname"
+                                                value="<%= Products.productname %>" class="form-control"
+                                                id="product_name" />
+                                            <span id="productnameError" style="color: red; display: none;"></span>
+                                        </div>
+                                        <input type="hidden" id="Newproduct" name="Newproduct" value="<%=Products._id%>">
+                                        <div class="mb-4">
+                                            <label class="form-label">Full description</label>
+                                            <textarea placeholder="Type here" id="description" name="description"
+                                                class="form-control" rows="4" required>
+                                            <%= Products.description %>
+                                        </textarea>
+                                            <span id="descriptionError" style="color: red; display: none;"></span>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <h6>Category Name</h6>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="mb-4">
+                                                        <label for="categoryname" class="form-label">Category Name:</label>
+                                                        <select id="categoryname" name="categoryId" class="form-control"> <!-- Change name attribute to "categoryId" -->
+                                                            <option value="" disabled>Select a category</option>
+                                                           
+                                                            
+                                                            <% categoryData.forEach(category => { %>
+                                         
+                                                                <option value="<%= category._id %>" <% if (Products.categoryId.toString() === category._id.toString()) { %> selected <% } %>><%= category.categoryname %></option>
+                                                            <% }); %>
+                                                        </select>
+                                                        <span id="categorynameError" style="color: red; display: none;"></span>
+                                                        <div class="invalid-feedback">Please select a category.</div>
+                                                    </div>
+                                                </div> <!-- col.// -->
+                                            </div>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-label">Price</label>
+                                            <input type="number" placeholder="Enter Price" min="1" max="150"
+                                                value="<%= Products.price %>" name="price" class="form-control"
+                                                id="price" required />
+                                            <span id="categorypriceError" style="color: red; display: none; "></span>
+                                        </div>
+                                        <!-- <div class="card-body">
+                                        <label for="image">Image:</label>   
+                                        <input type="file" id="image" name="image" >
+                                
+                                
+                                        </div> -->
+                                        <div class="card-body">
+                                            <label for="image">Image:</label>
+                                            <div class="input-upload">
+                                                <% for (let i=0; i < Products.image.length; i++) { %>
+                                                    <%= console.log(i)%>
+                                                    <div class="image-container" style="position: relative; display: inline-block; margin-right: 10px;">
+                                                        <img src="/uploads/product/<%= Products.image[i] %>" alt="Preview Image" style="width: 80px; height: 100px;">
+                                                        <span style="position: absolute; top: 15px; right: 20px; color: rgb(255, 0, 0); cursor: pointer;" class="material-symbols-outlined" onclick="imgDelete('<%= Products._id %>','<%= Products.image[i] %>','<%= i %>')">x</span>
+                                                    </div>
+                                                <% } %>
+                                                <!-- Input field for uploading a new image -->
+                                                <input type="file" id="image" name="image"  multiple>
+                                                <br>
+                                                <span id="imageError" style="color: red; display: none;"></span>
+
+                                            </div>
+                                        </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Quantity</label>
+                            <input type="number" placeholder="Enter Quantity" value="<%= Products.quantity %>"
+                                name="quantity" class="form-control" id="quantity" min="0" max="20" required />
+                            <span id="quantityError" style="color: red; display: none;"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="return validateForm()">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- card end// -->
+
+                <!-- card end// -->
+            </div>
+
+            <!-- card end// -->
+
+            </div>
+        </section>
+        <!-- content-main end// -->
+
+    </main>
+    <script>
+        let deletedImages = []; // Array to store deleted image information
+    
+        function imgDelete(productId, imageName, index) {
+            // Assuming you have code here to delete the image from the server or perform other actions
+            
+            // Hide the image
+            var imageContainer = document.getElementsByClassName('image-container')[index];
+            imageContainer.style.display = 'none';
+            
+            // Add the deleted image information to the array
+            deletedImages.push({  imageName: imageName });
+        }
+    
+        document.getElementById('edit-product-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            if (!validateForm()) {
+                return; // If validation fails, exit without sending the request
+            }
+    
+            // Get the product ID from the form action attribute
+            const productId = document.getElementById('Newproduct').value
+            
+            // Get the selected category ID
+            const categoryId = document.getElementById('categoryname').value;
+    
+            // Prepare form data
+            const formData = new FormData(this);
+    
+            // Add product ID and category ID to form data
+            // formData.append('productId', productId);
+            // formData.append('categoryId', categoryId);
+            formData.append('deletedImages', JSON.stringify(deletedImages)); // Add deleted images array to form data
+            
+            const dataaa={
+                categoryId:categoryId,
+                productId:productId
+            }
+            // Fetch request
+            fetch(`/editProduct?productid=${productId}`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Handle response data if needed
+                console.log(data);
+                if (data.message === "Product Name Already exist") {
+                    console.log('hello')
+                    // Show SweetAlert alert
+                    const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "warning",
+                                title: "Product Name has Already Exist",
+                                width:'400'
+                            })
+                    
+                    .then((result)=>{
+                        window.location.reload();
+                    })
+                } else if (data.success === "true") {
+                    // Show SweetAlert alert
+                    const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top",
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Product edited"
+                            })
+                    .then((result) => {
+                        // Reload the page
+                        window.location.href = '/admin/product';
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+            });
+        });
+    </script>
+   
+    
+    <script>
+        function validateForm() {
+            var productName = document.getElementById("product_name").value.trim();
+            var description = document.getElementById("description").value.trim();
+            var categoryName = document.getElementById("categoryname").value.trim();
+            var price = document.getElementById("price").value.trim();
+            var quantity = document.getElementById("quantity").value.trim();
+            var image = document.getElementById("image").value.trim();
+
+            var productNameError = document.getElementById("productnameError");
+            var descriptionError = document.getElementById("descriptionError");
+            var categoryNameError = document.getElementById("categorynameError");
+            var priceError = document.getElementById("categorypriceError");
+            var quantityError = document.getElementById("quantityError");
+            var imageError = document.getElementById("imageError");
+
+            // Reset error messages
+            productNameError.textContent = "";
+            descriptionError.textContent = "";
+            categoryNameError.textContent = "";
+            priceError.textContent = "";
+            quantityError.textContent = "";
+            imageError.textContent = "";
+
+            var isValid = true;
+
+            // Validate product name
+            if (productName === "") {
+                productNameError.textContent = "Product name cannot be empty";
+                productNameError.style.display = "inline"; // Show error message
+                isValid = false;
+            } else {
+                productNameError.style.display = "none"; // Clear error message
+            }
+
+            // Validate description
+            if (description === "") {
+                descriptionError.textContent = "Description cannot be empty";
+                descriptionError.style.display = "inline"; // Show error message
+                isValid = false;
+            } else {
+                descriptionError.style.display = "none"; // Clear error message
+            }
+
+            
+
+            // Validate category name
+            if (categoryName === "") {
+                categoryNameError.textContent = "Category name cannot be empty";
+                categoryNameError.style.display = "inline"; // Show error message
+                isValid = false;
+            } else {
+                categoryNameError.style.display = "none"; // Clear error message
+            }
+
+            // Validate price
+            if (price === "") {
+                priceError.textContent = "Price cannot be empty";
+                priceError.style.display = "inline"; // Show error message
+                isValid = false;
+            } else if (isNaN(price)) {
+                priceError.textContent = "Price must be a number";
+                priceError.style.display = "inline"; // Show error message
+                isValid = false;
+            } else {
+                priceError.style.display = "none"; // Clear error message
+            }
+
+            // Validate quantity
+            if (quantity === "") {
+                quantityError.textContent = "Quantity cannot be empty";
+                quantityError.style.display = "inline"; // Show error message
+                isValid = false;
+            } else {
+                quantityError.style.display = "none"; // Clear error message
+            }
+
+            if (image === "") {
+                
+            } else {
+                const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                if (!allowedExtensions.test(image)) {
+                    imageError.textContent = "Please select a valid image file (jpg, jpeg, or png)";
+                    imageError.style.display = "inline"; // Show error message
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js?v=1.1" type="text/javascript"></script>
+</body>
+
+</html>

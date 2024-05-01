@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Nest Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/adminassets/imgs/theme/favicon.svg" />
+    <!-- Template CSS -->
+    <link href="/adminassets/css/main.css?v=1.1" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+   
+    <main class="main-wrap">
+        
+        <section class="content-main">
+            <div class="content-header" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 class="content-title card-title">Unlisted Product</h2>
+
+                </div>
+                <div>
+                    
+                    <form id="Backtocategory" action="/BacktoProduct" method="get">
+                        <button type="submit" class="btn btn-primary btn-sm rounded">Back to Product</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <header class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2 col-sm-2 col-4"><h5>Image</h5></div>
+                        <div class="col-lg-2 col-sm-2 col-4"><h5>Product Name</h5></div>
+                        <div class="col-lg-2 col-sm-2 col-4"><h5>Quantity</h5></div>
+                        <div class="col-lg-2 col-sm-2 col-4"><h5>Price</h5></div>
+                        <div class="col-lg-2 col-sm-2 col-4"><h5>Date</h5></div>
+                        <div class="col-lg-2 col-sm-2 col-4 "><h5>Action</h5></div>
+                    </div>
+                </header>
+                <!-- card-header end// -->
+                <div class="card-body">
+                    <% Products.forEach(function(Products) { %>
+                        <% if (Products.is_delete) { %>
+                            <article class="itemlist">
+                                <div class="row align-items-center">
+                                    
+                                    <div class="col">
+                                        <a class="itemside" href="#">
+                                            <div class="left">
+                                                <img src="/uploads/product/<%= Products.image[0] %>" class="img-sm img-thumbnail" alt="Item" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="mb-0"><%= Products.productname %></h6>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="mb-0"><%= Products.quantity %></h6>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="mb-0"><%= Products.price %></h6>
+                                    </div>
+                                    <div class="col">
+                                        <span class="badge rounded-pill alert-success"><%= Products.createdAt.toLocaleDateString() %></span>
+                                    </div>
+                                    <div class="col">
+                                        
+                                        <button type="button" product_id="<%= Products._id %>" class="blockToggle btn btn-sm font-sm rounded btn-brand"
+                                            data-state="blocked" style="padding: 5px 10px; font-size: 14px;">Retreive</button>
+                                            
+                                    </div>
+                                </div>
+                                <!-- row .// -->
+                            </article>
+                        <% } %>
+                    <% }); %>
+                    <!-- itemlist  .// -->
+                </div>
+
+
+                <!-- card-body end// -->
+            </div>
+            <!-- card end// -->
+           
+        </section>
+        <!-- content-main end// -->
+        
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const deleteButtons = document.querySelectorAll(".blockToggle");
+
+            deleteButtons.forEach(button => {
+                    button.addEventListener("click", async function () {
+                        const ProductId = button.getAttribute("product_id");
+
+                        try {
+                            let response = await fetch(`/RetrieveProduct/${ProductId}`, {
+                                method: "PATCH",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
+                            });
+
+                            let data = await response.json();
+                            console.log(data); // For debugging, you can remove this line in production
+
+                            if (data.success) {
+                                window.location.reload(); // Refresh the page
+                            } else {
+                                // Optionally handle unsuccessful deletion
+                                console.error("Deletion was not successful:", data.error);
+                            }
+                        } catch (error) {
+                            console.error("There was a problem with your fetch operation:", error);
+                            // Optionally handle errors
+                        }
+                    });
+                });
+        }); 
+    </script>
+    <script src="/adminassets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/adminassets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/adminassets/js/vendors/select2.min.js"></script>
+    <script src="/adminassets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/adminassets/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/adminassets/js/main.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<footer class="footer-area">
+    <div class="bg-gray-2">
+        <div class="container">
+            <div class="footer-top pt-80 pb-35">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about mb-40">
+                            <div class="footer-logo">
+                                <a href="home" class="brand-wrap">
+                                    <!-- <img src="/adminassets/imgs/theme/sr.sv" class="logo" alt="Nest Dashboard" /> -->
+                                    <span style="font-family: Island Moments, cursive;font-size: 50px;
+                                    font-style: normal; text-align: center;">SR</span>
+                                </a>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut
+                                aliqua.</p>
+                            <div class="payment-img">
+                                <a href="#"><img src="/assets/images/icon-img/payment.png" alt="logo"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
+                            <h3 class="footer-title">Information</h3>
+                            <ul>
+                                <li><a href="">About Us</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-list mb-40">
+                            <h3 class="footer-title">My Accound</h3>
+                            <ul>
+                                <li><a href="">My Account</a></li>
+                                <li><a href="#">Order History</a></li>
+                                <li><a href="">Wish List</a></li>
+                                <li><a href="#">Newsletter</a></li>
+                                <li><a href="#">Order History</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
+                            <h3 class="footer-title">Get in touch</h3>
+                            <ul>
+                                <li><span>Address: </span>Your address goes here </li>
+                                <li><span>Telephone Enquiry:</span> (012) 345 6789</li>
+                                <li><span>Email: </span>demo@example.com</li>
+                            </ul>
+                            <div class="open-time">
+                                <p>Open : <span>8:00 AM</span> - Close : <span>18:00 PM</span></p>
+                                <p>Saturday - Sunday : Close</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentUrl = window.location.pathname;
+
+        const links = document.querySelectorAll('nav ul li a');
+        const headerLinks = document.querySelectorAll('.header-action-style a');
+        const accountLink=document.querySelector('.account a')
+
+        const setActiveClass = (element) => {
+            console.log(currentUrl,'c')
+            const href = element.getAttribute('href');
+            console.log(href)
+            if (href === currentUrl ||( currentUrl=='/categoryname'&& href=='/shop')|| ((currentUrl == '/login'||currentUrl=='/register') && href == '#')) {
+                element.classList.add('active');
+                if (currentUrl == '/login' && href == '#') {
+                    element.parentElement.classList.add('active');
+                }
+            }
+        };
+
+        links.forEach(link => {
+            setActiveClass(link);
+        });
+
+        headerLinks.forEach(link => {
+            setActiveClass(link);
+        });
+    });
+</script>

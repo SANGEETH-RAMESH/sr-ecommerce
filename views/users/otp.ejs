@@ -1,0 +1,268 @@
+<%-include('../layouts/header.ejs')%>
+    <!-- mini cart start -->
+    <style>
+        .error-placeholder {
+            visibility: hidden;
+            font-size: 14px;
+        }
+    </style>
+    <div class="breadcrumb-content text-center"
+        style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="margin-left: 100px; margin-top: 20px;">Otp </h3>
+        <ul style="display: flex; margin-right: 40px;">
+            <li><a href="/">Home</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li><a href="/register">Register</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li>Otp </li>
+        </ul>
+    </div>
+
+    <form id="otpForm" action="#" method="post" class="signin-form" onsubmit="return validateForm()">
+        <div class="form-group mb-3">
+            <label class="label m-0" for="otp">Enter OTP</label>
+            <input type="text" id="otp" name="otp" class="form-control" placeholder="OTP">
+            <span id="otp-error" style="color: red; font-size: 14px;" class="error"></span>
+        </div>
+        <% if (typeof message !=="undefined" ) { %>
+            <p id="message" style="color: red; text-align: center;">
+                <%= message %>
+            </p>
+            <% } %>
+
+                <div class="text-center">
+                    <div id="timer"></div>
+                    <button type="button" id="resendOTP" class="btn btn-primary rounded submit"
+                        onclick="startTimer()">Resend
+                        OTP</button>
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="form-control btn btn-primary rounded submit">Verify</button>
+                </div>
+    </form>
+
+    <%-include('../layouts/footer.ejs')%>
+        <!-- Mobile Menu start -->
+
+        </div>
+        <!-- All JS is here -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="assets/js/vendor/modernizr-3.11.7.min.js"></script>
+        <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+        <script src="assets/js/vendor/popper.min.js"></script>
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
+        <script src="assets/js/plugins/wow.js"></script>
+        <script src="assets/js/plugins/scrollup.js"></script>
+        <script src="assets/js/plugins/aos.js"></script>
+        <script src="assets/js/plugins/magnific-popup.js"></script>
+        <script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+        <script src="assets/js/plugins/swiper.min.js"></script>
+        <script src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/js/plugins/isotope.pkgd.min.js"></script>
+        <script src="assets/js/plugins/jquery-ui.js"></script>
+        <script src="assets/js/plugins/jquery-ui-touch-punch.js"></script>
+        <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+        <script src="assets/js/plugins/waypoints.min.js"></script>
+        <script src="assets/js/plugins/jquery.counterup.js"></script>
+        <script src="assets/js/plugins/select2.min.js"></script>
+        <script src="assets/js/plugins/easyzoom.js"></script>
+        <script src="assets/js/plugins/slinky.min.js"></script>
+        <script src="assets/js/plugins/ajax-mail.js"></script>
+        <!-- Main JS -->
+        <script src="assets/js/main.js"></script>
+        <!-- Countdown timer script -->
+
+        <script>
+            function startTimer() {
+                var timerElement = document.getElementById("timer");
+                var resendButton = document.getElementById("resendOTP");
+
+                // Hide resend button
+                resendButton.style.display = "none";
+
+                // Show timer
+                timerElement.style.display = "block";
+
+                // Get remaining time from localStorage
+                var remainingTime = localStorage.getItem("remainingTime");
+                if (remainingTime) {
+                    // If remainingTime exists, set it as the initial value of seconds
+                    seconds = remainingTime;
+                    localStorage.removeItem("remainingTime");
+                } else {
+                    // If remainingTime doesn't exist, set seconds to 60
+                    seconds = 60;
+                }
+
+                var timer = setInterval(function () {
+                    seconds--;
+                    timerElement.innerHTML = "Resend OTP in " + seconds + " seconds";
+                    if (seconds <= 0) {
+                        clearInterval(timer);
+                        timerElement.style.display = "none";
+                        resendButton.style.display = "block";
+                    }
+                }, 1000);
+
+                // Function to handle resendOtp button click
+                resendButton.addEventListener("click", function () {
+                    // Save the remaining time in localStorage
+                    localStorage.setItem("remainingTime", seconds);
+                    // Start the timer again
+                    startTimer();
+                });
+            }
+
+            //   Call startTimer when the page loads
+            window.onload = function () {
+                startTimer();
+            }
+        </script>
+        <script>
+            document.getElementById('resendOTP').addEventListener('click', function () {
+                fetch('/resend', {
+                    method: 'POST', // Request method
+                    headers: {
+                        'Content-Type': 'application/json' // Content type
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json(); // Parse the JSON response
+                    })
+                    .then(data => {
+                        console.log(data); // Log the response data
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            });
+        </script>
+        <script>
+            document.getElementById('otpForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+                submitOTPForm(); // Call submitOTPForm function to handle form submission
+            });
+
+            function submitOTPForm() {
+                // Validate the form
+                if (validateForm()) {
+                    // If validation passes, proceed to send data to the backend
+                    var formData = {
+                        otp: document.getElementById('otp').value,
+                    };
+
+                    fetch('/otp', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Handle response data
+                            if (data.message === 'Otp is correct') {
+                                document.getElementById('otp-error').textContent = '';
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: "top",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                    timerProgressBar: true,
+                                    didOpen: (toast) => {
+                                        toast.onmouseenter = Swal.stopTimer;
+                                        toast.onmouseleave = Swal.resumeTimer;
+                                    }
+                                });
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Registered successfully"
+                                });
+                                setTimeout(() => {
+                                    window.location.href = "/login";
+                                }, 1500);
+
+                            } else if (data.message === 'otp is incorrect' || data.message === 'otp is expired') {
+                                document.getElementById('otp-error').textContent = data.message;
+                            } else {
+                                console.error('Unknown response:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            // Handle error
+                        });
+                }
+            }
+
+            function validateForm() {
+                var otpInput = document.getElementById("otp").value.trim();
+
+                // Check if OTP is blank or empty
+                if (otpInput === "") {
+                    document.getElementById("otp-error").innerText = "OTP cannot be blank";
+                    return false;
+                }
+
+                // Check if OTP is not exactly 4 digits or contains non-numeric characters
+                if (!(/^\d{4}$/).test(otpInput)) {
+                    document.getElementById("otp-error").innerText = "OTP should be exactly 4 digits \n and contain only numbers";
+                    return false;
+                }
+
+                // Reset error message if validation passes
+                document.getElementById("otp-error").innerText = "";
+
+                // If all validations pass, return true to submit the form
+                return true;
+            }
+        </script>
+        <!-- <script>
+        document.getElementById('otpForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent default form submission
+    submitOTPForm(); // Call submitOTPForm function to handle form submission
+});
+
+function submitOTPForm() {
+    var formData = {
+        otp: document.getElementById('otp').value,
+    };
+
+    fetch('/otp', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle response data
+        if (data.message === 'Otp is correct') {
+            document.getElementById('otp-error').textContent = ''; // Clear any previous error message
+            window.location.href = '/login'; // Redirect to the login page
+        } else if (data.message === 'otp is incorrect' || data.message === 'otp is expired') {
+            document.getElementById('otp-error').textContent = data.message; // Display error message
+        } else {
+            console.error('Unknown response:', data.message); // Log unknown response
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error
+    });
+}
+    </script> -->
+
+
+        </body>
+
+
+        <!-- Mirrored from htmldemo.net/urdan/urdan/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Jan 2024 09:30:35 GMT -->
+
+        </html>

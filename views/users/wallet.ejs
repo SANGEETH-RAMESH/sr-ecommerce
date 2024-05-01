@@ -1,0 +1,193 @@
+<%-include('../layouts/header.ejs')%>
+
+    <!-- mini cart start -->
+    <div class="breadcrumb-content text-center"
+        style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
+        <h3  style="margin-left: 100px; margin-top: 20px;">Wallet </h3>
+        <ul style="display: flex; margin-right: 40px;">
+            <li><a href="/home">Home</a></li>
+            <li><i class="ti-angle-right"></i></li>
+            <li>Wallet </li>
+        </ul>
+    </div>
+
+    <!-- my account wrapper start -->
+    <div class="my-account-wrapper pb-100 pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- My Account Page Start -->
+                    <div class="myaccount-page-wrapper">
+                        <!-- My Account Tab Menu Start -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="myaccount-tab-menu nav" role="tablist">
+                                    <a href="my-account">Dashboard</a>
+                                    <a href="/order">Orders</a>
+                                    <a href="/refferal">Referral</a>
+                                    <a href="/loadwallet" class="active">Wallet</a>
+                                    <a href="/address">Address</a>
+                                    <a href="/accountdetails">Account Details</a>
+                                    <a href="/change-password">Change Password</a>
+                                    <a href="logout">Logout</a>
+                                </div>
+                            </div>
+                            <!-- My Account Tab Menu End -->
+                            <!-- My Account Tab Content Start -->
+                            <div class="col-lg-9 col-md-8">
+                                <div class="tab-content" id="myaccountContent">
+                                    <!-- Single Tab Content Start -->
+                                    <div class="card shadow-none mb-0 border">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <h4>Current Balance:</h4>
+                                                <span id="walletAmount"
+                                                    style="font-size: 24px; font-weight: bold; font-family: Arial, sans-serif;">₹
+                                                    <%if(wallet!=null){%>
+                                                    <%=wallet.balance%>
+                                                <%}else{%>
+                                                    0
+                                                    <%}%>
+                                            </span>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <!-- Toggle Buttons -->
+                                            <button id="addFundsButton" class="btn btn-success btn-md btn-block mb-3"
+                                                style="width: 180px; height: 50px;" onclick="showAddForm()">Add
+                                                Amount</button>
+
+                                            <button id="withdrawFundsButton"
+                                                class="btn btn-md btn-danger btn-block mb-3"
+                                                style="width: 230px; height: 50px; "
+                                                onclick="showWithdrawForm()">Withdraw Amount</button>
+
+                                            <form id="addFundsForm" action="#" style="display: none;">
+                                                <div class="form-group">
+                                                    <input type="number" id="addAmount" name="amount"
+                                                        class="form-control" placeholder="Enter amount to add"
+                                                        required="">
+                                                </div>
+                                                <br>
+                                                <button type="submit" id="paypal"
+                                                    class="btn btn-success btn-md btn-block"
+                                                    style="width: 134px;">Add</button>
+                                            </form>
+
+
+
+                                            <form id="withdrawFundsForm" action="#" 
+                                                style="display: none;">
+                                                <div class="form-group">
+                                                    <input type="number" id="withdrawAmount" name="amount"
+                                                        class="form-control" placeholder="Enter amount to withdraw"
+                                                        required="">
+                                                </div>
+                                                <br>
+                                                <button type="submit" id="withdrawButton"
+                                                    class="btn btn-danger btn-md btn-block"
+                                                    style="width: 134px;">Withdraw</button>
+                                            </form>
+
+
+                                            <!-- Show History Button -->
+                                            <div
+                                                style="position: absolute; top: 0; right: 0; margin-top: 10px; margin-right: 10px;">
+                                                <a href="/wallethistory" style="color: white; text-decoration: none;">
+                                                    <button type="button" id="showHistoryButton"
+                                                        class="btn btn-primary btn-md"
+                                                        style="background-color: #13ca9c; border-color: #007bff;">Show
+                                                        History</button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> <!-- My Account Tab Content End -->
+                            </div>
+                        </div> <!-- My Account Page End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- my account wrapper end -->
+        <script
+            src="https://www.paypal.com/sdk/js?client-id=AfthN0GUiYENGEqztpaSzljN10-4uvOJf0jmOJ5Xjqcji0ZDXQqjJgbt2UkDcVxm2ueIeXW6ceqBT9gJ"></script>
+        <script>
+            function showAddForm() {
+                var addFundsForm = document.getElementById('addFundsForm');
+                var withdrawFundsForm = document.getElementById('withdrawFundsForm');
+
+                addFundsForm.style.display = 'block';
+                withdrawFundsForm.style.display = 'none';
+            }
+        </script>
+
+        <script>
+            function showWithdrawForm() {
+                var addFundsForm = document.getElementById('addFundsForm');
+                var withdrawFundsForm = document.getElementById('withdrawFundsForm');
+
+                addFundsForm.style.display = 'none';
+                withdrawFundsForm.style.display = 'block';
+            }
+        </script>
+       <script>
+        const addfundform = document.getElementById('addFundsForm')
+    
+        addfundform.addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            const amount = document.getElementById('addAmount').value;
+    
+            try {
+                const response = await fetch('/addwallet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount })
+                })
+    
+                if (response.ok) {
+                    console.log("Amount added successfully");
+                    const data = await response.json(); // Parse the response body as JSON
+                    if (data.redirectUrl) {
+                        console.log('Redirecting to PayPal for payment');
+                        // Redirect the user to PayPal payment page
+                        window.location.href = data.redirectUrl;
+                    }
+                } else {
+                    console.error('Failed to add amount')
+                }
+            } catch (error) {
+                console.error('An error occurred:', error)
+            }
+        });
+    </script>
+    <script>
+        const withdrawform = document.getElementById('withdrawFundsForm')
+    
+        withdrawform.addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            const amount = document.getElementById('withdrawAmount').value;
+    
+            try {
+                const response = await fetch('/withdrawamount', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ amount })
+                })
+    
+                if (response.ok) {
+                    window.location.href = '/loadwallet';
+                } 
+            } catch (error) {
+                console.error('An error occurred:', error)
+            }
+        });
+    </script>
+        <%-include('../layouts/footer.ejs')%>
