@@ -55,7 +55,7 @@ admin_route.get('/BacktoDashboard',auth.toadminlogin,adminController.LoadDashboa
 
 admin_route.post('/admin/login',adminController.adminVerify)
 
-admin_route.get('/admin/index',adminController.index)
+admin_route.get('/admin/index',auth.toadminlogin,adminController.index)
 
 
 
