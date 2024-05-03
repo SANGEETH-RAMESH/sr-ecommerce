@@ -23,7 +23,9 @@
               <div class="card-body">
 
                 <!-- Order Details -->
-                <% var deliveryDate=new Date(order.currentDate); deliveryDate.setDate(deliveryDate.getDate() + 5); %>
+                <% var deliveryDate=new Date(order.currentDate);
+                var today=new Date();
+                deliveryDate.setDate(deliveryDate.getDate() + 5); %>
                   
                     <div class="order-details">
                       <h4>Order Details</h4>
@@ -34,9 +36,17 @@
                           <%= order.currentDate.toLocaleDateString() %>
                         </span></p>
                       <p>Total Price: <span class="fw-bolder text-dark">$ <%= order.totalAmount %></span></p>
-                      <p>Delivered by: <span class="fw-bolder text-dark">
+                      <%if(today.toLocaleDateString()>=deliveryDate.toLocaleDateString()){%>
+                        <p>Delivered by: <span class="fw-bolder text-dark">
                           <%= deliveryDate.toLocaleDateString() %>
                         </span></p>
+                      <%}else{%>
+                        <p>Expecting Delivery by: <span class="fw-bolder text-dark">
+                          <%= deliveryDate.toLocaleDateString() %>
+                        </span></p>
+                        
+                        <%}%>
+                      
                       <p>Payment Method: <span class="fw-bolder text-dark">
                           <%= order.paymentMethod %>
                         </span></p>
