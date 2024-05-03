@@ -540,8 +540,8 @@ const categoryname = async (req, res, next) => {
         }
 
         const categories = await Category.find()
-        
-        res.render('shop', { Products, req: req, totalPages, activecategory: req.query.categories, query: req.query.query, categories, currentPage: page, value: req.query.sortingOption, sortingOption: req.query.sortingOption, minprice: req.query.minPrice, maxprice: req.query.maxPrice })
+        const products=await Product.find()
+        res.render('shop', {products, Products, req: req, totalPages, activecategory: req.query.categories, query: req.query.query, categories, currentPage: page, value: req.query.sortingOption, sortingOption: req.query.sortingOption, minprice: req.query.minPrice, maxprice: req.query.maxPrice })
 
 
     } catch (error) {
