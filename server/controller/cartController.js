@@ -1079,7 +1079,7 @@ const OrderSuccess = async (req, res) => {
                 global.refId = null;
             }
         }
-
+        console.log("keridfh")
         const Productttss = req.session.products
 
         const productIds = Productttss.map(product => product.productId);
@@ -1181,6 +1181,7 @@ const OrderFailure = async (req, res) => {
     try {
 
         var items = []
+        
         const Productttss = req.session.products
 
         for (const product of Productttss) {
