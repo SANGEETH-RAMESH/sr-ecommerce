@@ -45,7 +45,7 @@ app.use((req,res,next)=>{
 
 app.use(
     session({
-        secret:process.env.secretg, 
+        secret:'cat', 
         resave:false,
         saveUninitialized:true
     })

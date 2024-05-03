@@ -24,11 +24,15 @@ const User = require('../model/userModel')
 
 const Wishlist = require('../model/wishlistmodel')
 
+console.log(process.env.client_id,'dfdfd')
+console.log(process.env.client_secret,'dfdfdsfdfdfdf')
+
 
 paypal.configure({
     'mode': 'sandbox',
     'client_id': process.env.client_id,
     'client_secret': process.env.client_secret
+    
 })
 
 
@@ -409,7 +413,8 @@ const OrderPlaced = async (req, res, next) => {
 
                 const noFraction = subtotalNumber.toFixed(2);
                 const amount = noFraction.toString();
-
+                console.log('hdfld')
+                console.log(amount,'dfd')
                 const paypalmethod = {
                     'intent': 'sale',
                     'payer': {
@@ -427,7 +432,7 @@ const OrderPlaced = async (req, res, next) => {
                         'description': "Your purchase description goes here"
                     }]
                 };
-
+                console.log(paypalmethod,'payment')
                 paypal.payment.create(paypalmethod, async function (error, payment) {
                     if (error) {
                         console.error('Error creating PayPal payment:', error);
@@ -435,7 +440,7 @@ const OrderPlaced = async (req, res, next) => {
                         console.error('Validation details:', error.response.details);
                     } else {
 
-
+                        console.log('dfldfldjfldfjlkdfjkdfjdk')
 
                         req.session.discount1 = req.body.discount;
                         req.session.address = req.body.selectedAddress;
@@ -651,7 +656,7 @@ const OrderPlaced = async (req, res, next) => {
                     await OrderResult.save();
 
                     for (const item of Productttss) {
-                        const productId = item.productId;
+                        const productId = item.productId; 
                         const quantity = item.quantity;
 
                         // Find the product by productId

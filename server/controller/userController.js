@@ -609,7 +609,7 @@ const shop = async (req, res, next) => {
         })
         // console.log(products,'prpdfdkfdhf')
         res.render('shop', {
-            Products, isLogin, categories: categories, req: req, Products: products,
+            products:Products, isLogin, categories: categories, req: req, Products: products,
             currentPage: page,
             totalPages: totalPages, value: null,
             sortingOption: "default",
@@ -1333,7 +1333,7 @@ const LoadSingleProduct = async (req, res, next) => {
 
         res.render('singleproduct', { Products, ProducT, req: req })
     } catch (error) {
-        //  error.statuscode =500;
+         error.statuscode =404;
         next(error)
     }
 }
