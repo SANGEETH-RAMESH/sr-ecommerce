@@ -289,8 +289,8 @@
                 document.getElementById("minpriceError").innerText = "Min price cannot be blank";
                 document.getElementById("minpriceError").style.display = "block"; // Show the error span
                 isValid = false;
-            } else if (parseFloat(minprice) <= 50) {
-                document.getElementById("minpriceError").innerText = "Min price must be greater than 50";
+            } else if (parseFloat(minprice) <= 150) {
+                document.getElementById("minpriceError").innerText = "Min price must be greater than 150";
                 document.getElementById("minpriceError").style.display = "block"; // Show the error span
                 isValid = false;
             } else {
