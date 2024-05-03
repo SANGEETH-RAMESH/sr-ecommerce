@@ -655,7 +655,7 @@ const RandomDateReport = async (req, res) => {
         // Render the EJS template
 
         //path.resolve is a method ,built-in path module
-        const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
 
@@ -799,7 +799,7 @@ const DownLoadReport = async (req, res) => {
         
         
         // this line constructs path to EJS template file salesreportdownload1
-        const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
 
         // render the ejstemplate using data
         const ejsData = await ejs.renderFile(ejsTemplate, data);
@@ -907,7 +907,7 @@ const DownloadSalesReport = async (req, res) => {
         }
 
         // Render the EJS template
-        const ejsTemplatePath = path.resolve(__dirname, '/my files/Week 8/views/admin/salesreportdownload1.ejs');
+        const ejsTemplatePath = path.resolve(__dirname, '/project/Week 8/views/admin/salesreportdownload1.ejs');
         const ejsData = await ejs.renderFile(ejsTemplatePath, data);
 
         // Launch Puppeteer
@@ -949,7 +949,7 @@ const Dailydownload = async (req, res) => {
             doc: matchedDocs
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         const browser = await puppeteer.launch({ headless: 'new' });
@@ -981,7 +981,7 @@ const Weeklydownload = async (req, res) => {
             doc: FindWeekly
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         const browser = await puppeteer.launch({ headless: 'new' });
@@ -1014,7 +1014,7 @@ const Monthlydownload = async (req, res) => {
             doc: FindMonthly
         }
         //rendering ejs
-        const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         //puppeteer setup
@@ -1052,7 +1052,7 @@ const Yearlydownload = async (req, res) => {
             doc: FindYearly
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         const browser = await puppeteer.launch({ headless: 'new' });
