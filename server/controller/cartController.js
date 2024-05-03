@@ -421,8 +421,8 @@ const OrderPlaced = async (req, res, next) => {
                         'payment_method': 'paypal'
                     },
                     'redirect_urls': {
-                        'return_url': 'http://localhost:4049/success',
-                        'cancel_url': 'http://localhost:4049/failure'
+                        'return_url': 'https://thetimex.online/success',
+                        'cancel_url': 'https://thetimex.online/failure'
                     },
                     'transactions': [{
                         'amount': {
@@ -1190,7 +1190,6 @@ const OrderFailure = async (req, res) => {
                 const Productfind = await Product.findOne({ _id: product.productId });
 
                 if (Productfind) {
-                    // Assign categoryId to product object's property
                     product.categoryId = Productfind.categoryId.toString();
                 }
             } catch (error) {
