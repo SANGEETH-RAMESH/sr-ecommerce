@@ -65,13 +65,23 @@
                                                
                                                 <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                                                     <div class="product-wrap" style=" margin-bottom: 30px; width: 300px;">
-                                                        <div class="product-img img-zoom mb-25"
-                                                            >
+                                                        <div class="product-img img-zoom mb-25" >
+                                                           
                                                             <a href="singleproduct/<%= Product._id %>"
                                                                 style="margin-right: 40px;   background-color: #e9ecef; height:299.97px;">
                                                                 <img src="/uploads/product/<%= Product.image[0] %>"
                                                                     alt="" style=" margin-top: 30px; margin-left: 35px; width: 180px;">
                                                             </a>
+                                                            <div class="product-badge badge-top badge-right badge-pink" style="margin-right: 35px;">
+                                                                <%if(Product?.oldprice){%>
+                                                                    
+                                                                    <span>- <%=100-(Product.price*(100/Product.oldprice))%>%</span>
+                                                                <%}%>
+                                                                
+
+                                                                
+                                                               
+                                                            </div>
                                                             <div class="product-action-wrap" >
                                                                 <button class="product-action-btn-1" style="margin-right: 40px; margin-bottom: 20px;"
                                                                     id="<%=Product._id%>" title="Wishlist"

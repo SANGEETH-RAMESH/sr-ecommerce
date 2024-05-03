@@ -498,6 +498,7 @@ const categoryname = async (req, res, next) => {
                         
 
                         product.price=finalPrice
+                        
                     }
                     else{
                         
