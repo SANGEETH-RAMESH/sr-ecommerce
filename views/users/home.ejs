@@ -298,21 +298,22 @@
                                                                         </h3>
                                                                         <% } %>
                         </h3>
-                        <p data-aos="fade-up" data-aos-delay="600">
+                        <p data-aos="fade-up" data-aos-delay="600" >
                             <%=products[0].description%>
                         </p>
-
+                        
+                        
                         <div class="product-details-action-wrap" data-aos="fade-up" data-aos-delay="1000">
 
 
-                            <div class="single-product-cart btn-hover">
+                            <div class="single-product-cart btn-hover" style="margin-top: 20px;">
                                 <% if (products[0].quantity> 0) { %>
                                     <a href="#" onclick="checkLoginAndAddToCart('<%= products[0]._id %>')"
                                         class="product-action-btn-2" title="Add To Cart">
                                         <i class="pe-7s-cart"></i>Add to cart</a>
                                     <% } else { %>
                                         <a href="#" class="product-action-btn-2" style="background-color: red;"
-                                            title="Add To Cart">
+                                             title="Add To Cart">
                                             <i class="pe-7s-cart"></i> Out of Stock
                                         </a>
                                         <% } %>
