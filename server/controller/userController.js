@@ -71,6 +71,37 @@ const base = async (req, res, next) => {
                     path: 'Offer'
                 }
             })
+            Productss.forEach(product=>{
+                if(product?.offer!=null || product?.categoryId?.Offer!=null ){
+                    if(product?.offer?.offer){
+                        
+                        var finalPrice=product.price;
+                        
+                        if(product?.categoryId?.Offer?.offer>product?.offer?.offer){
+                            
+                            product.oldprice=product.price
+                            finalPrice=product.price-((product.categoryId.Offer.offer*product.price)/100)
+                            
+    
+                            product.price=finalPrice
+                        }
+                        else{
+                            
+                            finalPrice=product.price-(product.price*(product.offer.offer/100))
+                          
+                            product.oldprice=product.price
+                            
+                            product.price=finalPrice
+                        }
+                    }
+                    else if(product?.categoryId?.Offer){
+                        product.oldprice=product.price
+                        var newTotal=(product.price-(product.price*(product.categoryId.Offer.offer)/100))
+                        
+                        product.price=newTotal
+                    }
+                }
+            })
         res.render('home', { req: req, Product: Productss, products: Producct });
     } catch (error) {
         error.statuscode = 404;

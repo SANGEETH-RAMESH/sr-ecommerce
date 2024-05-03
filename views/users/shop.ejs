@@ -17,7 +17,7 @@
                     <div class="shop-topbar-wrapper mb-40">
                         <div class="shop-topbar-left">
                             <div class="showing-item">
-                                <%=console.log(Products.length,'currentPage')%>
+                              
                                 <span>Showing <%= (currentPage * Products.length - Products.length) + 1 %>–<%=Products.length*currentPage%> of <%=products.length%> results</span>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <div id="productsContainer" class="shop-list-wrap mb-30" data-aos="fade-up"
                                     data-aos-delay="200">
                                     <div class="row">
-                                        <%=console.log(Products.length,'helg')%>
+                                        
                                         <% Products?.forEach(Product=> { %>
                                            
                                             <% if(Product.categoryId.is_delete!=true){%>
@@ -72,6 +72,7 @@
                                                                 <img src="/uploads/product/<%= Product.image[0] %>"
                                                                     alt="" style=" margin-top: 30px; margin-left: 35px; width: 180px;">
                                                             </a>
+                                                            <%=console.log(Product.oldprice,'oldprice')%>
                                                             <div class="product-badge badge-top badge-right badge-pink" style="margin-right: 35px;">
                                                                 <%if(Product?.oldprice){%>
                                                                     
@@ -121,7 +122,7 @@
                                                                     <span class="old-price">$ <%=Product.oldprice%></span>
                                                                     <span class="new-price">$ <%=Product.price.toFixed(1)%></span>
                                                                     <%}else{%>
-                                                                        <%=console.log('pricing')%>
+                                                                        
                                                                         <span class="new-price">$ <%=Math.floor(Product.price)%></span>
                                                                     <%}%>
                                                                

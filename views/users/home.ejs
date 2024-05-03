@@ -70,14 +70,14 @@
 
     <div class="product-area pb-95">
         <div class="container">
-            <div class="section-border section-border-margin-1" data-aos="fade-up" data-aos-delay="200">
+            <div class="section-border section-border-margin-1" data-aos="fade-up" data-aos-delay="200" style="margin-top: 20px;">
                 <div class="section-title-timer-wrap bg-white">
                     <div class="section-title-1">
                         <h2>Deal Of The Day</h2>
                     </div>
-                    <div id="timer-1-active" class="timer-style-1">
-                        <span>End In: </span>
-                        <div data-countdown="2023/8/30"></div>
+                    <div id="" class="timer-style-1" >
+                        <span style="margin-top: 5px;">End In: </span>
+                        <div style="margin-top: 3px;" >The countdown is finished</div>
                     </div>
                 </div>
             </div>
@@ -87,11 +87,23 @@
                         <div class="swiper-slide">
                             <div class="product-wrap" data-aos="fade-up" data-aos-delay="400">
                                 <div class="product-img img-zoom mb-25"
-                                    style="background-color: #e9ecef; width: 250px;">
+                                    style="background-color: #e9ecef; width: 300px;  height:299.97px;">
 
-                                    <a href="/singleproduct/<%=products._id%>">
+                                    <a href="/singleproduct/<%=products._id%>" style="width: 200px;  margin-left: 30px; margin-top: 20px;">
                                         <img src="/uploads/product/<%=products.image[0]%>" alt="">
                                     </a>
+                                    <%=console.log(products.oldprice)%>
+                                    <div class="product-badge badge-top badge-right badge-pink" style="margin-right: 30px;">
+
+                                        <%if(products?.oldprice){%>
+                                            
+                                            <span>- <%=100-(products.price*(100/products.oldprice))%>%</span>
+                                        <%}%>
+                                        
+
+                                        
+                                       
+                                    </div>
                                     <div class="product-action-wrap">
 
                                         <a class="product-action-btn-1" id="<%= products._id%>" title="Wishlist"
@@ -122,42 +134,17 @@
                                     <h3><a href="#">
                                             <%=products.productname%>
                                         </a></h3>
-                                    <div class="product-price">
-                                        <span class="new-price" style="color: green;">
-                                            <% if (products?.offer?.offer) { %>
-                                                <% var finalPrice=products.price; %>
+                                        <div class="product-price" >
 
-                                                    <% if ( products?.categoryId?.Offer?.offer> products?.offer?.offer)
-                                                        { %>
-
-                                                        <%
-                                                            finalPrice=products.price-((products.categoryId.Offer.offer*products.price)/100)%>
-                                                            <% } else { %>
-
-                                                                <% finalPrice=products.price - (products.price *
-                                                                    (products?.offer?.offer / 100)); %>
-                                                                    <% } %>
-                                                                        <span class="old-price">$ <%= products.price %>
-                                                                                </span>
-                                                                        <span class="new-price">$ <%= finalPrice %>
-                                                                                </span>
-                                                                        <% } else if (products.categoryId.Offer) { %>
-                                                                            <%var newTotal=products.price%>
-                                                                                <% var newTotal=products.price -
-                                                                                    (products.price *
-                                                                                    (products?.categoryId.Offer.offer/
-                                                                                    100)); %>
-
-                                                                                    <span class="old-price">$ <%=
-                                                                                            products.price %></span>
-                                                                                    <span class="new-price">$ <%=
-                                                                                            newTotal %></span>
-                                                                                    <% } else { %>
-                                                                                        <span class="regular-price">$
-                                                                                            <%= products.price %></span>
-                                                                                        <% } %>
-                                        </span>
-                                    </div>
+                                            <%if(products.oldprice){%>
+                                                <span class="old-price">$ <%=products.oldprice%></span>
+                                                <span class="new-price">$ <%=products.price.toFixed(1)%></span>
+                                                <%}else{%>
+                                                    
+                                                    <span class="new-price">$ <%=Math.floor(products.price)%></span>
+                                                <%}%>
+                                           
+                                        </div>
                                 </div>
                             </div>
                         </div>
