@@ -1052,7 +1052,7 @@ const Yearlydownload = async (req, res) => {
             doc: FindYearly
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "/../../views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         const browser = await puppeteer.launch({ 
