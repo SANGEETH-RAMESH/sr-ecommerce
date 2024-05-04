@@ -1798,7 +1798,7 @@ const InvoiceGenerate = async (req, res, next) => {
             Products: FindOrder,
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/sr-ecommerce/views/users/invoice1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "../sr-ecommerce/views/users/invoice1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         const browser = await puppeteer.launch({ 
