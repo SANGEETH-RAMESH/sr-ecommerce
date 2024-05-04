@@ -655,7 +655,7 @@ const RandomDateReport = async (req, res) => {
         // Render the EJS template
 
         //path.resolve is a method ,built-in path module
-        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "../../views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
 
@@ -799,7 +799,7 @@ const DownLoadReport = async (req, res) => {
         
         
         // this line constructs path to EJS template file salesreportdownload1
-        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "../../views/admin/salesreportdownload1.ejs");
 
         // render the ejstemplate using data
         const ejsData = await ejs.renderFile(ejsTemplate, data);
@@ -907,18 +907,16 @@ const DownloadSalesReport = async (req, res) => {
         }
 
         // Render the EJS template
-        const ejsTemplatePath = path.resolve(__dirname, '/project/Week 8/views/admin/salesreportdownload1.ejs');
-        const ejsData = await ejs.renderFile(ejsTemplatePath, data);
+        const ejsTemplate = path.resolve(__dirname, "../../views/admin/salesreportdownload1.ejs");
+        const ejsData = await ejs.renderFile(ejsTemplate, data);
 
-        // Launch Puppeteer
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ 
+            headless: "new",
+            executablePath: '/snap/bin/chromium',
+        });
         const page = await browser.newPage();
-
-        // Set the content of the page with the rendered EJS data
-        await page.setContent(ejsData, { waitUntil: 'networkidle0' });
-
-        // Generate PDF
-        const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+        await page.setContent(ejsData, { waitUntil: "networkidle0" });
+        const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
 
         // Close the browser
         await browser.close();
@@ -949,10 +947,13 @@ const Dailydownload = async (req, res) => {
             doc: matchedDocs
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "../../views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ 
+            headless: "new",
+            executablePath: '/snap/bin/chromium',
+        });
         const page = await browser.newPage();
         await page.setContent(ejsData, { waitUntil: "networkidle0" });
         const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
@@ -981,10 +982,13 @@ const Weeklydownload = async (req, res) => {
             doc: FindWeekly
         }
         // Render the EJS template
-        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "../../views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ 
+            headless: "new",
+            executablePath: '/snap/bin/chromium',
+        });
         const page = await browser.newPage();
         await page.setContent(ejsData, { waitUntil: "networkidle0" });
         const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
@@ -1014,15 +1018,16 @@ const Monthlydownload = async (req, res) => {
             doc: FindMonthly
         }
         //rendering ejs
-        const ejsTemplate = path.resolve(__dirname, "/project/Week 8/views/admin/salesreportdownload1.ejs");
+        const ejsTemplate = path.resolve(__dirname, "../../views/admin/salesreportdownload1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
         //puppeteer setup
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ 
+            headless: "new",
+            executablePath: '/snap/bin/chromium',
+        });
         const page = await browser.newPage();
         await page.setContent(ejsData, { waitUntil: "networkidle0" });
-
-        //generating pdf
         const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
 
         // Close the browser
