@@ -75,6 +75,8 @@
         <!-- Countdown timer script -->
 
         <script>
+            var timerInterval; // Declare timerInterval globally to use it in both functions
+
             function startTimer() {
                 var timerElement = document.getElementById("timer");
                 var resendButton = document.getElementById("resendOTP");
@@ -87,40 +89,34 @@
 
                 // Get remaining time from localStorage
                 var remainingTime = localStorage.getItem("remainingTime");
+                var seconds;
                 if (remainingTime) {
                     // If remainingTime exists, set it as the initial value of seconds
                     seconds = remainingTime;
                     localStorage.removeItem("remainingTime");
                 } else {
-                    // If remainingTime doesn't exist, set seconds to 60
-                    seconds = 60;
+                    // If remainingTime doesn't exist, set seconds to 59
+                    seconds = 59; // change here from 60 to 59
                 }
 
-                var timer = setInterval(function () {
-                    seconds--;
+                clearInterval(timerInterval);
+
+                timerInterval = setInterval(function () {
                     timerElement.innerHTML = "Resend OTP in " + seconds + " seconds";
                     if (seconds <= 0) {
-                        clearInterval(timer);
+                        clearInterval(timerInterval);
                         timerElement.style.display = "none";
                         resendButton.style.display = "block";
                     }
+                    seconds--; // decrement seconds after displaying the current value
                 }, 1000);
 
-                // Function to handle resendOtp button click
-                resendButton.addEventListener("click", function () {
-                    // Save the remaining time in localStorage
-                    localStorage.setItem("remainingTime", seconds);
-                    // Start the timer again
-                    startTimer();
-                });
+                // Call clearInterval initially to ensure proper timing
+                timerElement.innerHTML = "Resend OTP in " + seconds + " seconds";
+                seconds--; // decrement seconds after displaying the current value
             }
 
-            //   Call startTimer when the page loads
-            window.onload = function () {
-                startTimer();
-            }
-        </script>
-        <script>
+            // Function to handle resendOtp button click
             document.getElementById('resendOTP').addEventListener('click', function () {
                 fetch('/resend', {
                     method: 'POST', // Request method
@@ -136,11 +132,23 @@
                     })
                     .then(data => {
                         console.log(data); // Log the response data
+                        startTimer(); // Restart the timer after successful resend
                     })
                     .catch(error => {
                         console.error('There was a problem with the fetch operation:', error);
                     });
             });
+
+            // Call startTimer when the page loads
+            window.onload = function () {
+                startTimer();
+            }
+
+            // Function to validate form submission
+            function validateForm() {
+                // Add your form validation logic here
+                return true; // Return true to allow form submission
+            }
         </script>
         <script>
             document.getElementById('otpForm').addEventListener('submit', function (event) {
