@@ -135,7 +135,7 @@ const categoryname = async (req, res, next) => {
      
         if (req.query.query) {
            
-
+            console.log('1')
             const query = req.query.query;
 
 
@@ -143,6 +143,7 @@ const categoryname = async (req, res, next) => {
 
 
             if (req.query.categories) {
+            console.log('2')
                
                 const categoryIds = req.query.categories.split(',');
                 console.log(categoryIds,'hidf')
@@ -264,6 +265,7 @@ const categoryname = async (req, res, next) => {
         }
 
         else if (req.query.sortingOption != 'default' && req.query.sortingOption != undefined) {
+            console.log('3')
             
             if (req.query.categories) {
 
@@ -321,6 +323,7 @@ const categoryname = async (req, res, next) => {
 
             }
             else
+            console.log('4')
 
                 if (req.query.categories && req.query.sortingOption) {
 
@@ -478,6 +481,7 @@ const categoryname = async (req, res, next) => {
         else if (req.query.categories) {
             
 
+           
 
             const categoryIds = req.query.categories.split(',');
             const minPrice = req.query.minPrice;
@@ -491,15 +495,17 @@ const categoryname = async (req, res, next) => {
                     price: { $gte: minPrice, $lte: maxPrice }
                 };
             }
-
-            var Products = await Product.find(query).populate('offer')
+           console.log(query)
+           var Products = await Product.find(query).populate('offer')
                 .populate({
                     path: 'categoryId',
                     populate: {
                         path: 'Offer'
                     }
                 })
-
+            
+        
+                console.log(Products,'product')
         }
         else if (req.query.minPrice & req.query.maxPrice) {
 
@@ -515,7 +521,7 @@ const categoryname = async (req, res, next) => {
         }
 
 
-        // console.log(Products,'product')
+        
         Products.forEach(product=>{
             if(product.offer!=null || product.categoryId.Offer!=null ){
                 if(product?.offer?.offer){
@@ -550,7 +556,7 @@ const categoryname = async (req, res, next) => {
                 }
             }
         })
-        console.log('dlfj')
+        console.log('dlfj',{Products})
         // console.log(Products,'rpdfdfd')
         if(req.query.sortingOption=='lowToHigh'){
             
