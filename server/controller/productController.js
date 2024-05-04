@@ -236,20 +236,22 @@ const editproduct = async (req, res) => {
             });
 
 
-
+            console.log('11')
             const LoadProduct = await Product.findOne({ _id: req.query.productid })
 
-
+            console.log(LoadProduct,'siuuuuuuuuuuu')
             filenames.forEach(Deleting => {
                 const index = LoadProduct.image.indexOf(Deleting)
                 if (index != -1) {
                     LoadProduct.image.splice(index, 1)
                 }
             })
+            console.log('1')
+            // console.log(LoadProduct,'dfdf')
             await LoadProduct.save();
 
 
-
+            console.log('2')
             if (productname == '') {
                 ProductToUpdate.productname = ProductToUpdate.productname;
                 await ProductToUpdate.save();
@@ -292,7 +294,7 @@ const editproduct = async (req, res) => {
                 await ProductToUpdate.save();
             }
 
-
+            console.log('3')
             const imageUrls = [];
             if (req.files == '') {
                 // If no new file is uploaded, keep the existing image
@@ -315,8 +317,8 @@ const editproduct = async (req, res) => {
             }
 
 
-
-
+            console.log('4')
+            console.log(ProductToUpdate,'upateing')
             await ProductToUpdate.save();
 
             res.json({ success: "true" })
