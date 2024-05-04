@@ -27,7 +27,7 @@ const path = require('path')
 
 const ejs = require('ejs');
 
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-core')
 
 const nodemailer = require('nodemailer')
 
@@ -1801,7 +1801,10 @@ const InvoiceGenerate = async (req, res, next) => {
         const ejsTemplate = path.resolve(__dirname, "/my files/Week 8/views/users/invoice1.ejs");
         const ejsData = await ejs.renderFile(ejsTemplate, data);
 
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ 
+            headless: "new",
+            executablePath: '/snap/bin/chromium',
+        });
         const page = await browser.newPage();
         await page.setContent(ejsData, { waitUntil: "networkidle0" });
         const pdfBuffer = await page.pdf({ format: "A4", printBackground: true });
