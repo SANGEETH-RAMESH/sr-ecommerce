@@ -495,7 +495,7 @@ const categoryname = async (req, res, next) => {
                     price: { $gte: minPrice, $lte: maxPrice }
                 };
             }
-           console.log(query)
+           
            var Products = await Product.find(query).populate('offer')
                 .populate({
                     path: 'categoryId',
@@ -505,7 +505,6 @@ const categoryname = async (req, res, next) => {
                 })
             
         
-                console.log(Products,'product')
         }
         else if (req.query.minPrice & req.query.maxPrice) {
 

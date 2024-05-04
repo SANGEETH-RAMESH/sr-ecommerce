@@ -72,11 +72,12 @@
                                                                 <img src="/uploads/product/<%= Product.image[0] %>"
                                                                     alt="" style=" margin-top: 30px; margin-left: 35px; width: 180px;">
                                                             </a>
-                                                            <%=console.log(Product.oldprice,'oldprice')%>
+                                                            
                                                             <div class="product-badge badge-top badge-right badge-pink" style="margin-right: 35px;">
                                                                 <%if(Product?.oldprice){%>
                                                                     
-                                                                    <span>- <%=100-(Product.price*(100/Product.oldprice))%>%</span>
+                                                                    <span>- <%= Math.ceil(100 - (Product.price * (100 / Product.oldprice))) %>%</span>
+
                                                                 <%}%>
                                                                 
 
