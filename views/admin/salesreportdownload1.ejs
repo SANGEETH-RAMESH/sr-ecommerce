@@ -230,17 +230,19 @@ th {
                                             <tr>
                                                 <td colspan="6"></td> <!-- Empty cells to align with the columns -->
                                                 <td style="text-align: right;"><strong style="font-size: 20px;">Subtotal:</strong></td>
-                                                <td style="text-align: right;"><strong style="font-size: 20px;">$ <%= TOTAL %></strong></td>
+                                                <td style="text-align: right;"><strong style="font-size: 20px;">$ <%= TOTAL.toFixed(2) %></strong></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="6"></td> <!-- Empty cells to align with the columns -->
                                                 <td style="text-align: right;"><strong style="font-size: 20px;">Discount:</strong></td>
-                                                <td style="text-align: right;"><strong style="font-size: 20px;">$ <%=discounttotal%></strong></td>
+                                                <td style="text-align: right;">
+                                                    <strong style="font-size: 20px;">$ <%=discounttotal.toFixed(2)%></strong>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="6"></td> <!-- Empty cells to align with the columns -->
                                                 <td style="text-align: right;"><strong style="font-size: 20px;">Total:</strong></td>
-                                                <td style="text-align: right;"><strong style="font-size: 20px;">$ <%= TOTAL-discounttotal %></strong></td>
+                                                <td style="text-align: right;"><strong style="font-size: 20px;">$ <%= (TOTAL-discounttotal).toFixed(2) %></strong></td>
                                             </tr>
                                         </tbody>
                                         
