@@ -1629,8 +1629,8 @@ const LoadWalletAdd = async (req, res, next) => {
                 'payment_method': 'paypal'
             },
             'redirect_urls': {
-                'return_url': 'http://localhost:4049/addwalletsuccess',
-                'cancel_url': 'http://localhost:4049/walletfailure'
+                'return_url': 'https://thetimex.online/addwalletsuccess',
+                'cancel_url': 'https://thetimex.online/walletfailure'
             },
             'transactions': [{
                 'amount': {

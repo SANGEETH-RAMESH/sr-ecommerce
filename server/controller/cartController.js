@@ -1276,8 +1276,8 @@ const FailedPaymentRepay = async (req, res) => {
                 'payment_method': 'paypal'
             },
             'redirect_urls': {
-                'return_url': 'http://localhost:4049/repaysuccess',
-                'cancel_url': 'http://localhost:4049/repayfailure'
+                'return_url': 'https://thetimex.online/repaysuccess',
+                'cancel_url': 'https://thetimex.online/repayfailure'
             },
             'transactions': [{
                 'amount': {
