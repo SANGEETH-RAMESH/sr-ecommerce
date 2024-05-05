@@ -522,7 +522,7 @@ const categoryname = async (req, res, next) => {
 
         
         Products.forEach(product=>{
-            if(product.offer!=null || product.categoryId.Offer!=null ){
+            if(product?.offer!=null || product?.categoryId?.Offer!=null ){
                 if(product?.offer?.offer){
                     
                     var finalPrice=product.price;
