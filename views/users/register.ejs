@@ -187,9 +187,9 @@
             }
 
             function isValidEmail(email) {
-                var emailRegex = /^[^\s@]+@[^\s@]+\.{0,1}[^\s@]+\.(?:com)?$/;
-                return emailRegex.test(email);
-            }
+    var emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+}
 
             function isValidMobile(mobile) {
                 var mobileRegex = /^\d{10}$/;

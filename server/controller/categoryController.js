@@ -4,10 +4,10 @@ const user = require('../model/userModel')
 
 const category = require('../model/categorymodel')
 
-const Product = require('../model/productModel')
+const Product = require('../model/productModel') 
 
 
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb'); 
 
 
 const LoadCategory = async (req, res) => { 
