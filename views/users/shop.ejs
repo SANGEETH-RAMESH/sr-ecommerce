@@ -57,6 +57,7 @@
                                     data-aos-delay="200">
                                     <div class="row">
                                         
+                                        <%if(Products.length>0){%>
                                         <% Products?.forEach(Product=> { %>
                                            
                                             <% if(Product.categoryId.is_delete!=true){%>
@@ -134,6 +135,12 @@
                                                 <% } %>
                                                 <%}%>
                                                     <% }); %>
+                                                    <%}else{%>
+                                                        <div class="d-flex justify-content-center align-item-center">
+                                                          <img src="/assets/images/product/noproducts.png" width="500px" alt="">
+                                                        </div>
+                                                        
+                                                        <%}%>
                                     </div>
                                 </div>
 

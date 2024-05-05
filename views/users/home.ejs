@@ -92,7 +92,7 @@
                                     <a href="/singleproduct/<%=products._id%>" style="width: 200px;  margin-left: 30px; margin-top: 20px;">
                                         <img src="/uploads/product/<%=products.image[0]%>" alt="">
                                     </a>
-                                    <%=console.log(products.oldprice)%>
+                                 
                                     <div class="product-badge badge-top badge-right badge-pink" style="margin-right: 30px;">
 
                                         <%if(products?.oldprice){%>
@@ -255,7 +255,7 @@
                             <%=products[0].productname%>
                         </h2>
 
-                        <h3 class="new-price" style="color: green;">
+                        <h3 class="new-price" style="color: green;" data-aos="fade-up" data-aos-delay="200">
                             <% if (products[0]?.offer?.offer) { %>
                                 <% var finalPrice=products[0].price; %>
 
@@ -269,7 +269,7 @@
                                                     (products[0]?.offer?.offer / 100)); %>
                                                     <% } %>
 
-                                                        <h3 class="new-price">$ <%= finalPrice %>
+                                                        <h3 class="new-price"  data-aos="fade-up" data-aos-delay="200">$ <%= finalPrice %>
                                                         </h3>
                                                         <% } else if (products[0].categoryId.Offer) { %>
                                                             <%var newTotal=products[0].price%>
@@ -277,10 +277,10 @@
                                                                     (products[0]?.categoryId.Offer.offer/ 100)); %>
 
 
-                                                                    <h3 class="new-price"> $ <%= newTotal %>
+                                                                    <h3 class="new-price"  data-aos="fade-up" data-aos-delay="200"> $ <%= newTotal %>
                                                                     </h3>
                                                                     <% } else { %>
-                                                                        <h3 class="regular-price">$ <%=
+                                                                        <h3 class="regular-price"  data-aos="fade-up" data-aos-delay="200">$ <%=
                                                                                 products[0].price %>
                                                                         </h3>
                                                                         <% } %>
