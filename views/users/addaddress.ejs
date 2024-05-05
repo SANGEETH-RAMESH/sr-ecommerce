@@ -1,11 +1,10 @@
-                     
-                     <%-include('../layouts/header.ejs')%>
+<%-include('../layouts/header.ejs')%>
 
 
     <!-- mini cart start -->
     <div class="breadcrumb-content text-center"
         style="background-color: #f5f3f3; display: flex; align-items: center; justify-content: space-between;">
-        <h2 style="margin-left: 40px; margin-top: 20px;">Add Address </h2>
+        <h3 style="margin-left: 40px; margin-top: 20px;">Add Address </h3>
         <ul style="display: flex; margin-right: 40px;">
             <li><a href="/">Home</a></li>
             <li><i class="ti-angle-right"></i></li>
@@ -283,8 +282,8 @@
                 document.getElementById('rcityError').innerText = '';
             }
 
-            if (!zipcodePattern.test(zipcode)) {
-                document.getElementById('rzipcodeError').innerText = 'Zipcode should contain 6 digits';
+            if (!/^[1-9][0-9]{5}$/.test(zipcode)) {
+                document.getElementById('rzipcodeError').innerText = 'Zipcode should contain 6 digits and cannot start with 0';
                 valid = false;
             } else {
                 document.getElementById('rzipcodeError').innerText = '';
