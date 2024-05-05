@@ -20,6 +20,8 @@
                                 <%if(Products.length>0){%>
                                 <span>Showing <%= (currentPage * Products.length - Products.length) + 1 %>–<%=Products.length*currentPage%> of <%=products.length%> results</span>
                                 <%}else{%>
+                                    <%=console.log('lengjth')%>
+                                    <span>Showing 0 results</span>
                                     <%}%>
                             </div>
                         </div>
