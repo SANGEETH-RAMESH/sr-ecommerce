@@ -146,7 +146,7 @@
                 }
 
                 // Email validation using regular expression
-                var emailRegex = /^[^\s@]+@gmail\.com$/;
+                var emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(?:com)$/i;
                 if (email !== "" && !emailRegex.test(email)) {
                     document.getElementById("emailError").innerText = "Invalid email format";
                     document.getElementById("emailError").style.display = "inline";
@@ -167,6 +167,9 @@
                 var numberRegex = /[0-9]/;
                 return lowercaseRegex.test(password) && uppercaseRegex.test(password) && numberRegex.test(password);
             }
+
+      
+
         </script>
         <script>
             const form = document.querySelector('form');

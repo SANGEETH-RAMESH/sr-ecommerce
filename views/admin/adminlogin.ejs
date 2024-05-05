@@ -86,7 +86,7 @@
             }
         
             function isValidEmail(email) {
-                var emailRegex = /^[^\s@]+@gmail\.com$/;
+                var emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.(?:com)$/i;
                 return emailRegex.test(email);
             }
         
