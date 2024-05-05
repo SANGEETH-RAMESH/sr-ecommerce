@@ -196,15 +196,15 @@ th {
                                                         <!-- <%=TOTAL+=orders.quantity*orders.price%> -->
                                                     <tr>
                                                         
-                                                        <td><%=orders.productId.productname%></td>
-                                                        <td><%=orders.quantity%></td>
-                                                        <td>$ <%=orders.price%></td>
-                                                        <td><%=order.address[0].name%></td>
-                                                        <td><%=order.currentDate.toLocaleDateString()%></td>
-                                                        <td>$<%=order.discount%></td>
+                                                        <td scope="col"><%=orders.productId.productname%></td>
+                                                        <td scope="col"><%=orders.quantity%></td>
+                                                        <td scope="col">$ <%=orders.price%></td>
+                                                        <td scope="col"><%=order.address[0].name%></td>
+                                                        <td scope="col"><%=order.currentDate.toLocaleDateString()%></td>
+                                                        <td scope="col">$<%=order.discount%></td>
                                                      
-                                                        <td>$<%=total=orders.quantity*orders.price%></td>
-                                                        <td>
+                                                        <td scope="col">$<%=total=orders.quantity*orders.price%></td>
+                                                        <td scope="col">
                                                             <i class="material-icons md-payment font-xxl text-muted mr-5" style="display: inline-block;"></i>
                                                             <%= order.paymentMethod %>
                                                         </td>
