@@ -17,8 +17,10 @@
                     <div class="shop-topbar-wrapper mb-40">
                         <div class="shop-topbar-left">
                             <div class="showing-item">
-                              
+                                <%if(Products.length>0){%>
                                 <span>Showing <%= (currentPage * Products.length - Products.length) + 1 %>–<%=Products.length*currentPage%> of <%=products.length%> results</span>
+                                <%}else{%>
+                                    <%}%>
                             </div>
                         </div>
                         <div class="shop-topbar-right">
