@@ -24,8 +24,7 @@ const User = require('../model/userModel')
 
 const Wishlist = require('../model/wishlistmodel')
 
-console.log(process.env.client_id,'dfdfd')
-console.log(process.env.client_secret,'dfdfdsfdfdfdf')
+
 
 
 paypal.configure({
@@ -413,8 +412,7 @@ const OrderPlaced = async (req, res, next) => {
 
                 const noFraction = subtotalNumber.toFixed(2);
                 const amount = noFraction.toString();
-                console.log('hdfld')
-                console.log(amount,'dfd')
+               
                 const paypalmethod = {
                     'intent': 'sale',
                     'payer': {
@@ -432,7 +430,7 @@ const OrderPlaced = async (req, res, next) => {
                         'description': "Your purchase description goes here"
                     }]
                 };
-                console.log(paypalmethod,'payment')
+              
                 paypal.payment.create(paypalmethod, async function (error, payment) {
                     if (error) {
                         console.error('Error creating PayPal payment:', error);
@@ -440,7 +438,7 @@ const OrderPlaced = async (req, res, next) => {
                         console.error('Validation details:', error.response.details);
                     } else {
 
-                        console.log('dfldfldjfldfjlkdfjkdfjdk')
+                       
 
                         req.session.discount1 = req.body.discount;
                         req.session.address = req.body.selectedAddress;
@@ -1079,7 +1077,7 @@ const OrderSuccess = async (req, res) => {
                 global.refId = null;
             }
         }
-        console.log("keridfh")
+    
         const Productttss = req.session.products
 
         const productIds = Productttss.map(product => product.productId);

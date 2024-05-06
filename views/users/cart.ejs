@@ -52,13 +52,13 @@
                                                             
                                                             if (product.productId.offer) {
                                                                 
-                                                                 if (product?.productId?.categoryId.Offer > product?.productId.offer) { 
-                                                                  
-                                                                    
+                                                                 if (product?.productId?.categoryId?.Offer?.offer > product?.productId?.offer?.offer) { 
+                                                                  console.log(product.productId.categoryId.Offer.offer,product.productId.offer.offer)
+                                                                    console.log('categoryoffer')
                                                                     var  discountedPrice=product.productId.price-((product?.productId?.categoryId.Offer.offer*product.productId.price)/100)
                                                                     
                                                                  } else {
-                                                                   
+                                                                    console.log('productoffer')
                                                                     var      discountedPrice = product.productId.price - (product.productId.price * product.productId.offer.offer / 100);
                                                                  } 
                                                                  product.productId.price = discountedPrice;
@@ -69,7 +69,7 @@
                                                                 if ( product.productId.categoryId.Offer) {
                                                                     
                                                                     
-                                                                    
+                                                                    console.log('categoryoffer')
                                                                     const discountedPrice = product.productId.price - (product.productId.price * product.productId.categoryId.Offer.offer / 100);
                                                                     
                                                                     product.productId.price = discountedPrice;

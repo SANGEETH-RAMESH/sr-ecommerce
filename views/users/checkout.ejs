@@ -140,7 +140,7 @@
                                                         <% Products.product.forEach((product, index) => { %>
                                                             <% if (!product.productId.is_delete) { %>
                                                                 <% if (product.productId.offer) { %>
-                                                                    <% if (product?.productId?.categoryId?.Offer > product?.productId?.offer) { %>
+                                                                    <% if (product?.productId?.categoryId?.Offer?.offer > product?.productId?.offer?.offer) { %>
                                                                         <% discountedPrice = product.productId.price - ((product?.productId?.categoryId?.Offer?.offer * product.productId.price) / 100); %>
                                                                     <% } else { %>
                                                                         <% discountedPrice = product.productId.price - (product.productId.price * product.productId.offer.offer / 100); %>
@@ -341,11 +341,11 @@ productElements.forEach(element => {
                                     products: products,
                                     discount
                                 }
-                                if (parseFloat(subtotal) > 150 && selectedPaymentMethodValue === 'Cash On Delivery') {
+                                if (parseFloat(subtotal) > 1000 && selectedPaymentMethodValue === 'Cash On Delivery') {
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Oops...',
-                                        text: 'Cannot purchase using Cash on Delivery for orders above $150.',
+                                        text: 'Cannot purchase using Cash on Delivery for orders above $1000.',
                                         confirmButtonText: 'Got it'
                                     });
                                     return; // Prevent further execution of the code
