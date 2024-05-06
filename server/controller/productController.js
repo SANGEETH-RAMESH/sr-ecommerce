@@ -35,8 +35,7 @@ const LoadProduct = async (req, res) => {
             totalPages: totalPages
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).send('Internal Server Error');
+        res.render('error404',{error:error})
     }
 };
 
@@ -51,7 +50,7 @@ const LoadaddProduct = async (req, res) => {
 
         res.render('addproduct', { categoryData })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -136,7 +135,7 @@ const BacktoProduct = async (req, res) => {
     try {
         res.redirect('/admin/product')
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -155,7 +154,7 @@ const Loadeditproduct = async (req, res) => {
 
         res.render('editproduct', { categoryData, Products })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -352,7 +351,7 @@ const deleteimage = async (req, res) => {
     }
 
     catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -370,7 +369,7 @@ const deleteProduct = async (req, res) => {
         const deleteProduct = await Products.save();
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -381,7 +380,7 @@ const UnlistedProduct = async (req, res) => {
 
         res.render('unlistedproduct', { Products })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -398,7 +397,7 @@ const RetrieveProduct = async (req, res) => {
         const deleteProduct = await Products.save();
 
     } catch (error) {
-
+        res.render('error404',{error:error})
     }
 }
 

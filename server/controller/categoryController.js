@@ -31,7 +31,7 @@ const LoadCategory = async (req, res) => {
             totalPages: totalPages
         })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -59,7 +59,7 @@ const UnBlock = async (req, res) => {
         res.json(success);
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -82,7 +82,7 @@ const Block = async (req, res) => {
         res.json(Usser);
 
     } catch (error) {
-        console.log(error);
+        res.render('error404',{error:error})
     }
 };
 
@@ -99,7 +99,7 @@ const LoadAddCategory = async (req, res) => {
         res.render('addcategory')
       
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -134,7 +134,7 @@ const addCategory = async (req, res) => {
 
     } catch (error) {
         // console.error('Error saving category:', error);
-        console.log(error)
+        res.render('error404',{error:error})
     }
 };
 
@@ -151,7 +151,7 @@ const LoadeditCategory = async (req, res) => {
 
        
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -214,8 +214,7 @@ const EditedCategory = async (req, res) => {
         // Redirect to the desired route
         res.redirect('/admin/category');
     } catch (error) {
-        console.log(error);
-        // Handle errors appropriately
+        res.render('error404',{error:error})
         // res.status(500).send("Error updating category.");
     }
 };
@@ -229,7 +228,7 @@ const unlistedCategory = async (req, res) => {
      
         res.render('unlistedcategory', { categories })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -247,7 +246,7 @@ const deleteCategory = async (req, res) => {
        
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -265,7 +264,7 @@ const RetrieveCategory = async (req, res) => {
        
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -276,7 +275,7 @@ const BacktoCategory = async (req, res) => {
         res.redirect('/admin/category')
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 

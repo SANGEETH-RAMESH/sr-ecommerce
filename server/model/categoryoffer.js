@@ -13,13 +13,9 @@ const CategoryOfferSchema=mongoose.Schema({
     },
     expires: {
         type: Date,
-        default: function() {
-            // Calculate expiration date (3 days from now)
-            const expirationDate = new Date();
-            expirationDate.setDate(expirationDate.getDate() + 3);
-            return expirationDate;
-        },
-        expires: 259200 // 3 days in seconds (3 * 24 * 60 * 60)
+        default: Date.now() + (5 * 24 * 60 * 60 * 1000) // Five days in milliseconds
     }
 })
+
+CategoryOfferSchema.index({ "createdAt": 1 }, { expireAfterSeconds: 3 * 24 * 60 * 60 });
 module.exports=mongoose.model('categoryOffer',CategoryOfferSchema)

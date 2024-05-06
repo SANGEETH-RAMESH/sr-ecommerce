@@ -13,14 +13,10 @@ const ProductOfferSchema=mongoose.Schema({
     },
     expires: {
         type: Date,
-        default: function() {
-            // Calculate expiration date (5 days from now)
-            const expirationDate = new Date();
-            expirationDate.setDate(expirationDate.getDate() + 5);
-            return expirationDate;
-        },
-        expires: '5d'
+        default: Date.now() + (3 * 24 * 60 * 60 * 1000) 
     }
 })
+
+ProductOfferSchema.index({ "createdAt": 1 }, { expireAfterSeconds: 3 * 24 * 60 * 60 });
 
 module.exports=mongoose.model('productoffer',ProductOfferSchema)

@@ -33,7 +33,7 @@ const adminbase = ((req, res) => {
         res.render('adminlogin')
     }
     catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 })
 
@@ -212,7 +212,7 @@ const index = async (req, res) => {
         res.render('index', { Revenue, OrderDetails, startDateValue: null, yearData, MonthlyData, WeekData, value: req.query.sortingOption, value: value, endDateValue: null, mostSale: productMatches, mostsalecategory: categorymatch })
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -222,7 +222,7 @@ const LoadAdminOffer = async (req, res) => {
         const productOffer = await ProductOffer.find().populate('product')
         res.render('offer', { categoryOffer, productOffer })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -249,7 +249,7 @@ const adminVerify = async (req, res) => {
             res.render('adminlogin', { message: 'Email is Incorrect' })
         }
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -270,7 +270,7 @@ const userdetails = async (req, res) => {
         res.render('userdetails', { users })
         
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -295,7 +295,7 @@ const LoadAdminOrder = async (req, res) => {
        
         res.render('adminorder', { orders: order, currentPage: page, totalPages: totalPages })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -304,7 +304,7 @@ const LoadCoupon = async (req, res) => {
         const coupon = await Coupon.find();
         res.render('loadcoupon', { coupon })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -312,7 +312,7 @@ const LoadAddCoupon = async (req, res) => {
     try {
         res.render('addcoupon')
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -335,7 +335,7 @@ const AddCoupon = async (req, res) => {
             res.redirect('/loadcoupon')
         }
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -346,7 +346,8 @@ const LoadEditCoupon = async (req, res) => {
      
         res.render('editcoupon', { coupon })
     } catch (error) {
-        console.log(error.message)
+        console.log('dfjd')
+        res.render('error404',{error:error})
     }
 }
 
@@ -382,7 +383,7 @@ const EditCoupon = async (req, res) => {
             res.redirect('/loadcoupon')
         }
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -392,7 +393,7 @@ const DeleteCoupon = async (req, res) => {
         const CouponDelete = await Coupon.findOneAndDelete({ _id: req.body.couponId })
         res.json({ message: 'Coupon Deleted' })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -434,7 +435,8 @@ const Loadorderdetail = async (req, res) => {
 
         res.render('orderdetails', { order: orders, User, address })
     } catch (error) {
-        console.log(error.message)
+        console.log('jf')
+        res.render('error404',{error:error})
     }
 }
 
@@ -462,7 +464,7 @@ const Approve = async (req, res) => {
         await productfind.save();
         await order.save();
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -478,7 +480,7 @@ const Decline = async (req, res) => {
         })
         await order.save();
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -511,7 +513,7 @@ const StatusChange = async (req, res) => {
         await order.save();
         res.json({ success: "StatusChanged" })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -520,7 +522,7 @@ const LoadDashboard = async (req, res) => {
     try {
         res.redirect('/admin/index')
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -530,7 +532,7 @@ const adminLogout = async (req, res) => {
         req.session.destroy()
         res.redirect('/admin/login')
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -550,7 +552,7 @@ const LoadDailyReport = async (req, res) => {
         req.session.doc = FindDaily
         res.render('salesreport', { doc: matchedDocs, Names: "Daily", endDateValue: null, startDateValue: null });
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -569,7 +571,7 @@ const LoadWeeklyReport = async (req, res) => {
         req.session.doc = FindWeekly
         res.render('salesreport', { doc: FindWeekly, Names: "Weekly", endDateValue: null, startDateValue: null })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -589,7 +591,7 @@ const LoadMonthlyReport = async (req, res) => {
         req.session.doc = FindMonthly
         res.render('salesreport', { doc: FindMonthly, Names: "Monthly", endDateValue: null, startDateValue: null });
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -609,7 +611,7 @@ const LoadYearlyReport = async (req, res) => {
         res.render('salesreport', { doc: FindYearly, Names: "Yearly", endDateValue: null, startDateValue: null });
 
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -623,7 +625,7 @@ const LoadSalesReport = async (req, res) => {
         res.render('salesreport', { doc: TotalSales, Names: "Sales", endDateValue: null, startDateValue: null })
 
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -689,7 +691,7 @@ const RandomDateReport = async (req, res) => {
         res.send(pdfBuffer);
 
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -712,7 +714,7 @@ const RandomDateSalesReport = async (req, res) => {
 
         res.render('salesreport', { doc: RandomDateReport, startDateValue: req.body.startDate, endDateValue: req.body.endDate, Names: null })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -818,7 +820,7 @@ const DownLoadReport = async (req, res) => {
         res.setHeader("Content-Disposition", "inline; filename=sales_report.pdf");
         res.send(pdfBuffer);
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -929,7 +931,7 @@ const DownloadSalesReport = async (req, res) => {
 
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -965,7 +967,7 @@ const Dailydownload = async (req, res) => {
         res.setHeader("Content-Disposition", "inline; filename=sales_report.pdf");
         res.send(pdfBuffer);
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1000,7 +1002,7 @@ const Weeklydownload = async (req, res) => {
         res.setHeader("Content-Disposition", "inline; filename=sales_report.pdf");
         res.send(pdfBuffer);
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1039,7 +1041,7 @@ const Monthlydownload = async (req, res) => {
         res.send(pdfBuffer);
         // res.render('salesreportdownload1',{doc:FindMonthly})
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1075,7 +1077,7 @@ const Yearlydownload = async (req, res) => {
         res.setHeader("Content-Disposition", "inline; filename=sales_report.pdf");
         res.send(pdfBuffer);
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1090,7 +1092,7 @@ const LoadAddCategoryOffer = async (req, res) => {
 
         res.render('addcategoryoffer', { categoryData })
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1114,7 +1116,7 @@ const AddCategoryOffer = async (req, res) => {
             res.json({ message: 'Offer Added' });
         }
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1128,7 +1130,7 @@ const LoadAddProductOffer = async (req, res) => {
 
         res.render('addproductoffer', { ProductData })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1152,7 +1154,7 @@ const AddProductOffer = async (req, res) => {
             res.json({ message: 'Offer Added' })
         }
     } catch (error) {
-        console.log(error.message)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1162,7 +1164,7 @@ const DeleteCategoryOffer = async (req, res) => {
         const deleteCategoryoffer = await CategoryOffer.findOneAndDelete({ _id: req.body.cofferId })
         res.json({ message: 'Category Offer Deleted' })
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
@@ -1173,7 +1175,7 @@ const DeleteProductOffer = async (req, res) => {
         res.json({ message: 'Product Offer Deleted' })
 
     } catch (error) {
-        console.log(error)
+        res.render('error404',{error:error})
     }
 }
 
