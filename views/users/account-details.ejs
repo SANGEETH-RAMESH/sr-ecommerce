@@ -378,107 +378,9 @@
                 }, 1000); // Update every 1 second
             }
         </script>
-        <%=console.log(user.mobile,'user',user)%>
+        
+
         <%if(!user.mobile){%>
-            <%=console.log('hello')%>
-        <%}%>
-
-        <%if(user.mobile!==undefined){%>
-        <script>
-            console.log('33')
-            document.addEventListener('DOMContentLoaded', function() {
-    // Add event listener to the form
-    document.getElementById('userForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-        console.log('noo')
-        if (validateForm()) {
-            submitForm(); // Call submitForm if form validation passes
-        }
-    });
-    console.log('started')
-
-    function validateForm() {
-        // Get the values of name and mobile input fields
-        var name = document.getElementById("firstname").value.trim();
-       
-            var mobile = document.getElementById("mobile1").value.trim();
-        
-        
-       
-        // Regular expression for mobile validation
-        var mobileRegex = /^[6-9]\d{9}$/;
-        var pattern = /^[A-Za-z0-9\s]+$/;
-
-        // Clear previous error messages
-        document.getElementById("rnameError").innerText = "";
-        document.getElementById("rmobileError").innerText = "";
-
-        // Validate name
-        if (name === "") {
-            document.getElementById("rnameError").innerText = "Name cannot be blank";
-            return false; // Prevent form submission
-        }
-        if (!pattern.test(name)) {
-    document.getElementById("rnameError").innerText = "Name cannot contain special characters";
-    return false; // Prevent form submission
-}
-
-        // Validate mobile
-        if (mobile === "") {
-            document.getElementById("rmobileError").innerText = "Mobile number cannot be blank";
-            return false; // Prevent form submission
-        }
-        if (!mobileRegex.test(mobile)) {
-            document.getElementById("rmobileError").innerText = "Invalid mobile number";
-            return false; // Prevent form submission
-        }
-
-        // If both name and mobile are valid, return true to allow form submission
-        return true;
-    }
-});
-
-
-            function submitForm() {
-                var userId = document.getElementById('userid').value;
-                var formData = {
-                    userId: userId,
-                    
-                    name: document.getElementById('firstname').value,
-                    mobile: document.getElementById('mobile1').value,
-                    
-                    
-                };
-                console.log('dei')
-                fetch('/updateaccountdetails', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.message === 'Email Already Exist') {
-                            // Display the error message
-                            document.getElementById('remailError').textContent = data.message;
-                        } else if (data.message === 'Updated') {
-                            // Redirect to /my-account
-                            window.location.href = '/my-account';
-                        } else {
-                            // Clear the error message if it exists
-                            document.getElementById('remailError').textContent = '';
-                            // Handle other responses or actions on success
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        // Handle error
-                    });
-            }
-        </script>
-        <%}else{%>
             <script>
                 console.log('33')
                 document.addEventListener('DOMContentLoaded', function() {
@@ -530,6 +432,102 @@
                         
                         name: document.getElementById('firstname').value,
                        
+                        
+                        
+                    };
+                    console.log('dei')
+                    fetch('/updateaccountdetails', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.message === 'Email Already Exist') {
+                                // Display the error message
+                                document.getElementById('remailError').textContent = data.message;
+                            } else if (data.message === 'Updated') {
+                                // Redirect to /my-account
+                                window.location.href = '/my-account';
+                            } else {
+                                // Clear the error message if it exists
+                                document.getElementById('remailError').textContent = '';
+                                // Handle other responses or actions on success
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            // Handle error
+                        });
+                }
+            </script>
+        <%}else{%>
+            
+            <script>
+                console.log('33')
+                document.addEventListener('DOMContentLoaded', function() {
+        // Add event listener to the form
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            console.log('noo')
+            if (validateForm()) {
+                submitForm(); // Call submitForm if form validation passes
+            }
+        });
+        console.log('started')
+    
+        function validateForm() {
+            // Get the values of name and mobile input fields
+            var name = document.getElementById("firstname").value.trim();
+           
+                var mobile = document.getElementById("mobile1").value.trim();
+            
+            
+           
+            // Regular expression for mobile validation
+            var mobileRegex = /^[6-9]\d{9}$/;
+            var pattern = /^[A-Za-z0-9\s]+$/;
+    
+            // Clear previous error messages
+            document.getElementById("rnameError").innerText = "";
+            document.getElementById("rmobileError").innerText = "";
+    
+            // Validate name
+            if (name === "") {
+                document.getElementById("rnameError").innerText = "Name cannot be blank";
+                return false; // Prevent form submission
+            }
+            if (!pattern.test(name)) {
+        document.getElementById("rnameError").innerText = "Name cannot contain special characters";
+        return false; // Prevent form submission
+    }
+    
+            // Validate mobile
+            if (mobile === "") {
+                document.getElementById("rmobileError").innerText = "Mobile number cannot be blank";
+                return false; // Prevent form submission
+            }
+            if (!mobileRegex.test(mobile)) {
+                document.getElementById("rmobileError").innerText = "Invalid mobile number";
+                return false; // Prevent form submission
+            }
+    
+            // If both name and mobile are valid, return true to allow form submission
+            return true;
+        }
+    });
+    
+    
+                function submitForm() {
+                    var userId = document.getElementById('userid').value;
+                    var formData = {
+                        userId: userId,
+                        
+                        name: document.getElementById('firstname').value,
+                        mobile: document.getElementById('mobile1').value,
                         
                         
                     };
