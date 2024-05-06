@@ -1331,7 +1331,10 @@ const UpdateAccountDetails = async (req, res, next) => {
 
 
             Userdata.name = req.body.name
-            Userdata.mobile = req.body.mobile
+            if(req?.body?.mobile){
+                Userdata.mobile = req.body.mobile
+            }
+            
 
             req.session.name = req.body.name
             await Userdata.save();
