@@ -1487,12 +1487,12 @@ const success = async (req, res) => {
             res.redirect('/login')
         }
         else {
-
+            res.session.mobile=s.mobile
             req.session.email = s.email
             req.session._id = s._id;
             req.session.name = s.name
             req.session.user = s;
-
+            console.log(req.session.mobile,'mobile')
             res.redirect('/')
         }
     }
