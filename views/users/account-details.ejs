@@ -378,7 +378,11 @@
                 }, 1000); // Update every 1 second
             }
         </script>
-        <%=console.log(user.mobile,'user')%>
+        <%=console.log(user.mobile,'user',user)%>
+        <%if(!user.mobile){%>
+            <%=console.log('hello')%>
+        <%}%>
+
         <%if(user.mobile!==undefined){%>
         <script>
             console.log('33')
