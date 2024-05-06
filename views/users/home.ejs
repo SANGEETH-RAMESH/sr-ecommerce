@@ -97,7 +97,7 @@
 
                                         <%if(products?.oldprice){%>
                                             
-                                            <span>- <%=100-(products.price*(100/products.oldprice))%>%</span>
+                                            <span>- <%=100-(products.price*(100/products.oldprice)).toFixed(2)%>%</span>
                                         <%}%>
                                         
 

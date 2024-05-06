@@ -42,7 +42,7 @@ var totalPrice = 0;
 Wishlist?.product.reverse().forEach((product, index) => {
     if (!product.productId.is_delete) {
         if (product.productId.offer) {
-            if (product.productId.categoryId.Offer > product.productId.offer) {
+            if (product.productId.categoryId.Offer.offer > product.productId.offer.offer) {
                 console.log('f');
                 var discountedPrice = product.productId.price - ((product.productId.categoryId.Offer.offer * product.productId.price) / 100);
                 console.log(discountedPrice, 'ff');
