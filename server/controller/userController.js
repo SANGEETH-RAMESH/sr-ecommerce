@@ -551,7 +551,7 @@ const categoryname = async (req, res, next) => {
                     var newTotal=product.price-(product.price*(product.categoryId.Offer.offer)/100)
                     
                     product.price=newTotal
-                    console.log(newTotal,'totaol')
+                   
                 }
             }
         })
@@ -1448,7 +1448,7 @@ passport.deserializeUser((user, done) => {
 
 const success = async (req, res) => {
     req.session.user = req.user
-
+    req.session.google=req.user
     const password = req.user.id;
 
     function MobileGenerator() {

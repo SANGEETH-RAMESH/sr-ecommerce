@@ -96,8 +96,8 @@
                                                                                     <td class="text-center"
                                                                                         style="padding-top: 5px;">
                                                                                         <img src="/uploads/product/<%=item.productId.image[0]%>"
-                                                                                            width="40px" height="50px"
-                                                                                            alt="">
+                                                                                            width="70px" height="90px"
+                                                                                            alt="" >
                                                                                     </td>
                                                                                     <td class="text-center"
                                                                                         style="padding-top: 5px; vertical-align: middle;">
@@ -182,7 +182,7 @@
                                                                                                                                 id="returnButton_<%= item.productId._id %>"
                                                                                                                                 data-order-id="<%= order._id %>"
                                                                                                                                 data-product-id="<%= item.productId._id %>"
-                                                                                                                                style="margin-top: 25px; padding: 15px 25px; font-size: 12px;">
+                                                                                                                                style="margin-top:  40px; padding: 15px 25px; font-size: 12px;">
                                                                                                                                 Return
                                                                                                                             </button>
                                                                                                                             <% }
@@ -199,7 +199,7 @@
                                                                                                                                         class="btn rounded  btn-danger cancelBtn"
                                                                                                                                         data-order-id="<%= order._id %>"
                                                                                                                                         data-product-id="<%= item.productId._id %>"
-                                                                                                                                        style="margin-top: 25px; padding: 15px 25px; font-size: 12px;">
+                                                                                                                                        style="margin-top: 40px; padding: 15px 25px; font-size: 12px;">
                                                                                                                                         Cancel
                                                                                                                                     </a>
                                                                                                                                     <% }
@@ -223,7 +223,7 @@
                                                                                                 ) { %>
                                                                                                 <a href="/invoice-generate?orderId=<%= order._id %>&productId=<%= item.productId._id %>"
                                                                                                     class="btn rounded btn-green"
-                                                                                                    style="margin-top: 5px; padding: 15px 15px; font-size: 12px;">
+                                                                                                    style="margin-top: 20px; padding: 15px 15px; font-size: 12px;">
                                                                                                     Download
                                                                                                 </a>
                                                                                                 <% } else
@@ -231,7 +231,7 @@
                                                                                                     <button
                                                                                                         data-order-id="<%=order._id%>"
                                                                                                         class="btn rounded btn-green pay-now-btn"
-                                                                                                        style="margin-top: 5px; padding: 15px 15px; font-size: 12px;">
+                                                                                                        style="margin-top: 20px; padding: 15px 15px; font-size: 12px;">
                                                                                                         Pay Now
                                                                                                     </button>
                                                                                                     <% } %>
