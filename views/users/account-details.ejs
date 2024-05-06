@@ -382,7 +382,7 @@
 
         <%if(!user.mobile){%>
             <script>
-                console.log('33')
+                console.log('user.mobile')
                 document.addEventListener('DOMContentLoaded', function() {
         // Add event listener to the form
         document.getElementById('userForm').addEventListener('submit', function(event) {
@@ -399,8 +399,7 @@
             var name = document.getElementById("firstname").value.trim();
             
             
-            console.log(name); // Check if value is retrieved correctly
-            console.log('naem',mobile)
+            
             // Regular expression for mobile validation
         
             var pattern = /^[A-Za-z0-9\s]+$/;
