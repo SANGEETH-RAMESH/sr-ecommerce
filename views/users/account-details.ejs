@@ -378,6 +378,7 @@
                 }, 1000); // Update every 1 second
             }
         </script>
+        <%if(user.mobile){%>
         <script>
             console.log('33')
             document.addEventListener('DOMContentLoaded', function() {
@@ -394,7 +395,10 @@
     function validateForm() {
         // Get the values of name and mobile input fields
         var name = document.getElementById("firstname").value.trim();
-        var mobile = document.getElementById("mobile1").value.trim();
+        if(user.mobile){
+            var mobile = document.getElementById("mobile1").value.trim();
+        }
+        
         console.log(name); // Check if value is retrieved correctly
         console.log('naem',mobile)
         // Regular expression for mobile validation
@@ -470,6 +474,91 @@
                     });
             }
         </script>
+        <%}else{%>
+            <script>
+                console.log('33')
+                document.addEventListener('DOMContentLoaded', function() {
+        // Add event listener to the form
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            console.log('noo')
+            if (validateForm()) {
+                submitForm(); // Call submitForm if form validation passes
+            }
+        });
+        console.log('started')
+    
+        function validateForm() {
+            // Get the values of name and mobile input fields
+            var name = document.getElementById("firstname").value.trim();
+            
+            
+            console.log(name); // Check if value is retrieved correctly
+            console.log('naem',mobile)
+            // Regular expression for mobile validation
+        
+            var pattern = /^[A-Za-z0-9\s]+$/;
+    
+            // Clear previous error messages
+            document.getElementById("rnameError").innerText = "";
+ 
+    
+            // Validate name
+            if (name === "") {
+                document.getElementById("rnameError").innerText = "Name cannot be blank";
+                return false; // Prevent form submission
+            }
+            if (!pattern.test(name)) {
+        document.getElementById("rnameError").innerText = "Name cannot contain special characters";
+        return false; // Prevent form submission
+    }
+    
+           
+            return true;
+        }
+    });
+    
+    
+                function submitForm() {
+                    var userId = document.getElementById('userid').value;
+                    var formData = {
+                        userId: userId,
+                        
+                        name: document.getElementById('firstname').value,
+                       
+                        
+                        
+                    };
+                    console.log('dei')
+                    fetch('/updateaccountdetails', {
+                        method: 'POST',
+                        body: JSON.stringify(formData),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.message === 'Email Already Exist') {
+                                // Display the error message
+                                document.getElementById('remailError').textContent = data.message;
+                            } else if (data.message === 'Updated') {
+                                // Redirect to /my-account
+                                window.location.href = '/my-account';
+                            } else {
+                                // Clear the error message if it exists
+                                document.getElementById('remailError').textContent = '';
+                                // Handle other responses or actions on success
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            // Handle error
+                        });
+                }
+            </script>
+        <%}%>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
