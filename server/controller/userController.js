@@ -1448,9 +1448,7 @@ passport.deserializeUser((user, done) => {
 
 const success = async (req, res) => {
     req.session.user = req.user
-    req.session.mobile=req.user.mobile
-    console.log(req.user,'req.user')
-    console.log(req.session.mobile)
+    req.session.google=req.user
     const password = req.user.id;
 
     function MobileGenerator() {
@@ -1478,7 +1476,8 @@ const success = async (req, res) => {
         const n = await Signup.save();
         const New = await User.findOne({ email: req.session.email })
         req.session._id = New._id;
-
+        res.session.mobile=New.mobile
+        console.log(req.session.mobile,'req.seidnflsdf')
         res.redirect('/')
     }
     else {
