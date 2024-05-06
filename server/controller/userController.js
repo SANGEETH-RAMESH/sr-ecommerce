@@ -1459,8 +1459,7 @@ const success = async (req, res) => {
 
     const refferalcode = generateRandomString(9)
     const s = await User.findOne({ email: req.user.email })
-    console.log(s.mobile,'mobile')
-    var mob=s.mobile
+   
     if (!Already) {
         var Signup = new User({
             name: req.user.displayName,
@@ -1477,7 +1476,7 @@ const success = async (req, res) => {
         const n = await Signup.save();
         const New = await User.findOne({ email: req.session.email })
         req.session._id = New._id;
-        res.session.mobile=mob
+        req.session.mobile=New.mobile
         console.log(req.session.mobile,'req.seidnflsdf')
         res.redirect('/')
     }
