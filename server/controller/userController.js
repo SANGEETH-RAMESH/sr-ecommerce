@@ -1448,7 +1448,7 @@ passport.deserializeUser((user, done) => {
 
 const success = async (req, res) => {
     req.session.user = req.user
-    req.session.google=req.user
+    req.session.mobile=req.user.mobile
     const password = req.user.id;
 
     function MobileGenerator() {
