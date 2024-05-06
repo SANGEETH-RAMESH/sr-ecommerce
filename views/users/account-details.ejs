@@ -34,7 +34,7 @@
                             <!-- My Account Tab Menu End -->
                             <!-- My Account Tab Content Start -->
                             
-                            <% var mobilelength=req.session.mobile.toString().length%>
+                    
                             <div class="col-lg-9 col-md-8">
                                 <div class="tab-content" id="myaccountContent">
                                     <!-- Single Tab Content Start -->
@@ -53,8 +53,8 @@
                                                             <span id="rnameError" style="color: red;"></span>
                                                         </div>
                                                     </div>
-                                                    <%=console.log(mobilelength,'mobilelength')%>
-                                                    <% if(mobilelength < 11 ){%>
+                                                    
+                                                    <% if(user.mobile ){%>
                                                     <div class="single-input-item">
                                                         <label for="mobile" class="required">Mobile Number</label>
                                                         <input type="number" value="<%=user.mobile%>" name="mobile"
