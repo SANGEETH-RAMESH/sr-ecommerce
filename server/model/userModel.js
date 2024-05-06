@@ -14,8 +14,8 @@ const userSchema=mongoose.Schema({
      
     },
     mobile:{
-        type:Number,
-        required:true
+        type:Number
+       
     },
     is_delete:{
         type:Boolean,

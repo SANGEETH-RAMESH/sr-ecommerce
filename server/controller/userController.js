@@ -1465,7 +1465,6 @@ const success = async (req, res) => {
             name: req.user.displayName,
             email: req.user.email,
             password: password,
-            mobile: mobile,
             refferalcode: refferalcode
 
         });
@@ -1476,7 +1475,7 @@ const success = async (req, res) => {
         const n = await Signup.save();
         const New = await User.findOne({ email: req.session.email })
         req.session._id = New._id;
-        req.session.mobile=New.mobile
+        
         console.log(req.session.mobile,'req.seidnflsdf')
         res.redirect('/')
     }
