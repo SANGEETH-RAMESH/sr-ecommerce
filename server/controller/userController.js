@@ -1499,7 +1499,13 @@ const success = async (req, res) => {
         }
     }
 
-
+// module.exports.failed=async(req,res)=>{
+//     try {
+//         res.redirect('/login')
+//     } catch (error) {
+//         next(error)
+//     }
+// }
 
 
 

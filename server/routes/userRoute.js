@@ -61,6 +61,7 @@ user_route.get('/auth/google/success',isdelete,userController.success)
 user_route.get('/auth/google/failure',(req,res)=>{
     res.send('something went wrong')
 })
+// user_route.get('/auth/google/failure',userController.failed)
 
 //Login ,register,forgot password and otp
 
