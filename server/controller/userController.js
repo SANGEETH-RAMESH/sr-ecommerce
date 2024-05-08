@@ -1420,6 +1420,7 @@ const Logout = async (req, res, next) => {
         req.session._id = null
         req.session.email = null
         req.session.name = null
+        req.session.google=null
 
         res.redirect('/')
     } catch (error) {
