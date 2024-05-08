@@ -309,6 +309,8 @@ const categoryname = async (req, res, next) => {
                                 path: 'Offer'
                             }
                         })
+                        Products=Products
+                        console.log('hf',sortingOption,Products)
                 }
                 else if (req.query.sortingOption == 'ztoa') {
 
@@ -327,10 +329,11 @@ const categoryname = async (req, res, next) => {
 
             }
             else
-            console.log('4')
+       
 
                 if (req.query.categories && req.query.sortingOption) {
 
+        
                     
                     const categoryIds = req.query.categories.split(',');
                     const minPrice = req.query.minPrice;
@@ -389,6 +392,7 @@ const categoryname = async (req, res, next) => {
 
                 }
                 else if (req.query.minPrice && req.query.maxPrice) {
+       
                    
                     const minPrice = req.query.minPrice;
                     const maxPrice = req.query.maxPrice;
@@ -462,6 +466,8 @@ const categoryname = async (req, res, next) => {
                                     path: 'Offer'
                                 }
                             })
+        console.log('keritund')
+
                     }
                     else if (sortingOption == "ztoa") {
                         var Products = await Product.find().sort({ productname: -1 }).skip(skip).limit(limit).populate('offer')
@@ -501,6 +507,7 @@ const categoryname = async (req, res, next) => {
                     price: { $gte: minPrice, $lte: maxPrice }
                 };
             }
+        console.log('keritund')
            
            var Products = await Product.find(query).populate('offer')
                 .populate({
@@ -524,8 +531,8 @@ const categoryname = async (req, res, next) => {
                     }
                 })
         }
-
-        // console.log(sortingOption,'illa')
+        console.log('keritund')
+        // console.log(sortingOption,'illa',Products)
         if(sortingOption){
             req.query.sortingOption=sortingOption;
         }
