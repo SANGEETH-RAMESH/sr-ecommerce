@@ -700,7 +700,7 @@ const OrderPlaced = async (req, res, next) => {
                         const newTransaction = {
                             amount: 50,
                             transactiontype: "Credit",
-                            oldbalance: walletCheck.balance - amount
+                            oldbalance: walletCheck.balance
                         };
 
                         walletCheck.Transactionhistory.push(newTransaction);
@@ -1012,7 +1012,7 @@ const OrderSuccess = async (req, res) => {
                     const newTransaction = {
                         amount: 50,
                         transactiontype: "Credit",
-                        oldbalance: walletCheck.balance - amount
+                        oldbalance: walletCheck.balance 
                     };
 
                     walletCheck.Transactionhistory.push(newTransaction);

@@ -415,9 +415,8 @@
             }
 
             if (image === "") {
-                imageError.textContent='Please select an image';
-                imageError.style.display='inline';
-                isValid=false
+              
+              
             } else {
                 const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
                 if (!allowedExtensions.test(image)) {
