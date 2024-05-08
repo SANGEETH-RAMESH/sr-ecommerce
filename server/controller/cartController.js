@@ -913,7 +913,7 @@ const cancelOrder = async (req, res) => {
             walletCheck.balance = walletCheck.balance + global.total;
 
 
-            const newbalance = walletCheck.balance - global.total;
+            const newbalance = walletCheck.balance 
             const newTransaction = {
                 amount: global.total,
                 transactiontype: "Credit",
@@ -996,7 +996,7 @@ const returnOrder = async (req, res) => {
 
 const OrderSuccess = async (req, res) => {
     try {
-
+        console.log('hello')
         const userCheck = await Order.findOne({ userId: req.session._id })
         console.log(global.refId, 'sangee')
         if (global.refId) {

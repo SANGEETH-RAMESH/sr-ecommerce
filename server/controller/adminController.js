@@ -9,6 +9,8 @@ const Product = require('../model/productModel')
 
 const Order = require('../model/ordermodel')
 
+const Wallet=require('../model/walletmodel')
+
 const Coupon = require('../model/couponmodel')
 
 const Address = require('../model/addressmodel')
@@ -446,6 +448,7 @@ const Approve = async (req, res) => {
 
         let productfind = await Product.findOne({ _id: req.body.productid })
         const order = await Order.findOne({ _id: req.body.orderId })
+        console.log(order.paymentMethod,'status')
         
         const Approving = order.items.forEach(item => {
             if (item.productId == req.body.productid) {
@@ -457,12 +460,42 @@ const Approve = async (req, res) => {
                     req.session.returnreason = null
                 }
                 item.Status = 'Return'
-
-                res.json({ message: 'approved' })
+                price=item.price
+                
             }
         })
+        if(order.paymentMethod=='paypal' || order.paymentMethod=='wallet'){
+            console.log('hello',price)
+            const WalletCheck=await Wallet.findOne({userId:order.userId})
+            if(WalletCheck){
+                console.log('ind')
+                WalletCheck.balance=WalletCheck.balance+price;
+                const newbalance=WalletCheck.balance;
+                const newTransaction={
+                    amount:price,
+                    transactiontype:'Credit',
+                    oldbalance:newbalance
+                }
+                WalletCheck.Transactionhistory.push(newTransaction)
+                await WalletCheck.save();
+            }
+            else{
+                console.log('illa')
+                const newWallet=new Wallet({
+                    userId:order.userId,
+                    balance:price,
+                    Transactionhistory:[{
+                        amount:price,
+                        transactiontype:'Credit',
+                        oldbalance:price
+                    }]
+                })
+                await newWallet.save();
+            }
+        }
         await productfind.save();
         await order.save();
+        res.json({ message: 'approved' })
     } catch (error) {
         res.render('error404',{error:error})
     }

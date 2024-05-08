@@ -153,7 +153,7 @@
                                                                                                                 (item.approve===3)
                                                                                                                 { %>
                                                                                                                 <p class="text-center text-success text-sucess"
-                                                                                                                    style="margin-top: 32px;">
+                                                                                                                    style="margin-top: 50px;">
                                                                                                                     Approved
                                                                                                                 </p>
                                                                                                                 <% } else
@@ -161,7 +161,7 @@
                                                                                                                     (item.approve===2)
                                                                                                                     { %>
                                                                                                                     <p class="text-center text-danger"
-                                                                                                                        style="margin-top: 32px;">
+                                                                                                                        style="margin-top: 50px;">
                                                                                                                         Declined
                                                                                                                     </p>
                                                                                                                     <% } else
@@ -170,7 +170,7 @@
                                                                                                                         {
                                                                                                                         %>
                                                                                                                         <p class="text-center text-danger"
-                                                                                                                            style="margin-top: 32px;">
+                                                                                                                            style="margin-top: 50px;">
                                                                                                                             Requested
                                                                                                                         </p>
                                                                                                                         <% } else
@@ -210,17 +210,17 @@
                                                                                     </td>
                                                                                     
 
-
+                                                                                    <%=console.log(item.Status)%>
                                                                                     <% if (!payNowShown &&
-                                                                                        (item.Status==='Delivered' ||
+                                                                                        (item.Status==='Delivered' || item.Status ==='Return' ||
                                                                                         (order.paymentMethod==='paypal'
                                                                                         &&
                                                                                         order.paymentStatus==='Pending'
                                                                                         ))) { %>
                                                                                         <td>
+                                                                                            <%=console.log(item.Status)%>
                                                                                             <% if
-                                                                                                (item.Status==='Delivered'
-                                                                                                ) { %>
+                                                                                                (item.Status==='Delivered' || item.Status ==='Return') { %>
                                                                                                 <a href="/invoice-generate?orderId=<%= order._id %>&productId=<%= item.productId._id %>"
                                                                                                     class="btn rounded btn-green"
                                                                                                     style="margin-top: 20px; padding: 15px 15px; font-size: 12px;">
