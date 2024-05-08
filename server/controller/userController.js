@@ -301,7 +301,7 @@ const categoryname = async (req, res, next) => {
                 }
                 else if (req.query.sortingOption == 'atoz') {
 
-
+                    sortingOption=req.query.sortingOption;
                     var Products = await Product.find(query).sort({ productname: 1 }).populate('offer')
                         .populate({
                             path: 'categoryId',
