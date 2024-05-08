@@ -169,6 +169,7 @@ const categoryname = async (req, res, next) => {
                         }).sort({ price: -1 })
                 }
                 else if (req.query.sortingOption == 'lowToHigh') {
+                   
                     var s = await Product.find(query).populate('offer')
                         .populate({
                             path: 'categoryId',
@@ -222,6 +223,7 @@ const categoryname = async (req, res, next) => {
                     }).sort({ price: -1 })
             }
             else if (req.query.sortingOption == 'lowToHigh') {
+                
                 var s = await Product.find({}).populate('offer')
                     .populate({
                         path: 'categoryId',
@@ -275,7 +277,8 @@ const categoryname = async (req, res, next) => {
                 let query = { categoryId: { $in: categoryIds } };
 
                 if (req.query.sortingOption == 'lowToHigh') {
-
+                    console.log('sortingOption',req.query.sortingOption)
+                    var sortingOption=req.query.sortingOption;
                     var Products = await Product.find(query).sort({ price: 1 }).populate('offer')
                         .populate({
                             path: 'categoryId',
@@ -283,6 +286,7 @@ const categoryname = async (req, res, next) => {
                                 path: 'Offer'
                             }
                         })
+                        
                 }
                 else if (req.query.sortingOption == 'highToLow') {
 
@@ -351,6 +355,7 @@ const categoryname = async (req, res, next) => {
                             })
                     }
                     else if (req.query.sortingOption == 'LowToHigh') {
+                      
                         var Products = await Product.find(query).sort({ price: 1 }).populate('offer')
                             .populate({
                                 path: 'categoryId',
@@ -418,7 +423,7 @@ const categoryname = async (req, res, next) => {
 
                 }
                 else {
-                 
+                    console.log('siuu')
                     // var page = parseInt(req.query.page) || 1; // Current page, default to 1 if not provided
                     // const limit = 6;
                     // const count = await Product.countDocuments(); // Total number of products 
@@ -431,6 +436,7 @@ const categoryname = async (req, res, next) => {
                     const sortingOption = req.query.sortingOption
 
                     if (sortingOption == "lowToHigh") {
+                        console.log('hi',req.query.sortingOption)
                         var Products = await Product.find().sort({ price: 1 }).populate('offer')
                             .populate({
                                 path: 'categoryId',
@@ -480,9 +486,9 @@ const categoryname = async (req, res, next) => {
         }
         else if (req.query.categories) {
             
-
+          
            
-
+            console.log('hy')
             const categoryIds = req.query.categories.split(',');
             const minPrice = req.query.minPrice;
             const maxPrice = req.query.maxPrice;
@@ -519,7 +525,11 @@ const categoryname = async (req, res, next) => {
                 })
         }
 
-
+        // console.log(sortingOption,'illa')
+        if(sortingOption){
+            req.query.sortingOption=sortingOption;
+        }
+       
         
         Products.forEach(product=>{
             if(product?.offer!=null || product?.categoryId?.Offer!=null ){
@@ -555,7 +565,7 @@ const categoryname = async (req, res, next) => {
                 }
             }
         })
-        console.log('dlfj',{Products})
+        // console.log('dlfj',{Products})
         // console.log(Products,'rpdfdfd')
         if(req.query.sortingOption=='lowToHigh'){
             
@@ -566,6 +576,8 @@ const categoryname = async (req, res, next) => {
             Products=Products.sort((a, b) => b.price - a.price).slice(skip, skip + limit);
         }
         else if(req.query.sortingOption=='ztoa'){
+
+            console.log('hello',req.query.sortingOption)
             Products=Products
             
         }
@@ -1764,6 +1776,8 @@ const LoadWalletHistory = async (req, res, next) => {
         const page = parseInt(req.query.page) || 1;
         const limit = 6;
         const wallet = await Wallet.findOne({ userId: req.session._id });
+        
+        console.log(wallet,'wallet')
      
         if (wallet == null) {
             var count = null
@@ -1776,8 +1790,9 @@ const LoadWalletHistory = async (req, res, next) => {
             var totalPages = Math.ceil(count / limit);
             var skip = (page - 1) * limit;
             var UserFind = await Wallet.findOne({ userId: req.session._id }, { Transactionhistory: { $slice: [skip, limit] } });
+           
         }
-
+        
 
         res.render('wallethistory', {
             req: req, history: UserFind, currentPage: page,

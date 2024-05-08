@@ -27,8 +27,9 @@
                         </div>
                         <div class="shop-topbar-right">
                             <div class="shop-sorting-area">
-
+                                <%=console.log(req.query.sortingOption,'sortingdfsdf')%>
                                  <select id="sortingSelect" class="nice-select nice-select-style-1"
+                                
                                     onchange="handleSort(this.value)">
                                     <option value="default" <%=sortingOption==='default' ? 'selected' : '' %>
                                         disabled>Default Sorting</option>
